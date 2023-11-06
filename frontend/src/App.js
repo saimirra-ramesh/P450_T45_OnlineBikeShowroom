@@ -12,7 +12,7 @@ function App() {
       <HashRouter>
         <Nav />
         <Routes>
-          <Route path="/" element={<Productpage />} /> {/*for testing ive changed this to show the product page instead of home */}
+          <Route path="/" element={<Home />} /> 
         </Routes>
       </HashRouter>
     </div>
