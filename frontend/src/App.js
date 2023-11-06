@@ -4,6 +4,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Nav from './components/Nav';
+import Productpage from './components/Productpage';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <HashRouter>
         <Nav />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Productpage />} /> {/*for testing ive changed this to show the product page instead of home */}
         </Routes>
       </HashRouter>
     </div>
