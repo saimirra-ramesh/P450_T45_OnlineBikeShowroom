@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'; 
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import './Login.css';
 
 function Login() {
@@ -11,13 +12,13 @@ function Login() {
         <div className="input_box">
           <input type="text" placeholder="  Username" required />
           <div className="icon">
-            <FontAwesomeIcon icon={faUser} /> {/* Font Awesome icon for user */}
+            <FontAwesomeIcon icon={faUser} />
           </div>
         </div>
         <div className="input_box">
           <input type="password" placeholder="  Password" required />
           <div className="icon">
-            <FontAwesomeIcon icon={faLock} /> {/* Font Awesome icon for lock */}
+            <FontAwesomeIcon icon={faLock} />
           </div>
         </div>
         <div className="input_box button">
@@ -35,7 +36,10 @@ function Login() {
         </div>
         <br />
         <div className="sign_up">
-          Don't have an account? <a href="./Signup.js">Sign up here!</a>
+          Don't have an account? 
+          <Link className="nav-link" to="/signup" id="signup">
+            Sign up here!
+          </Link>
         </div>
       </form>
     </div>

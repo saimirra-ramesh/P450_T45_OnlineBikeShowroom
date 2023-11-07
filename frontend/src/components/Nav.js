@@ -10,7 +10,7 @@ function Nav() {
       <div className="row align-items-center">
         <div className="col-3 text-center">
           <Link className="navbar-brand" to="/">
-            <h1 className="pt-4">Bikeswale <FontAwesomeIcon icon={faMotorcycle} style={{color: "#000000",}} /></h1>
+            <h1 className="pt-4">Bikeswale <FontAwesomeIcon icon={faMotorcycle} style={{color: "#000000",}} /> </h1>
           </Link>
         </div>
         <div className="col-6 text-center">
@@ -23,7 +23,7 @@ function Nav() {
         </div>
         <div className="col-3 text-center">
           <Link className="nav-link" to="/login" id="login">
-            <h5>Login / Signup <FontAwesomeIcon icon={faUser} style={{color: "#000000",}}/></h5>
+            <h5> Login <FontAwesomeIcon icon={faUser} style={{color: "#000000",}}/></h5>
           </Link>
         </div>
       </div>
