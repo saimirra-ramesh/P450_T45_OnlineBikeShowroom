@@ -19,8 +19,8 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/product" element={<Productpage />} />
           <Route path="/tiles" element={<Producttilesview />} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} /> 
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} /> 
         </Routes>
       </HashRouter>
     </div>
