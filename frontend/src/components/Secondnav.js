@@ -1,16 +1,36 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {useState} from "react";
-import "./Secondnav.css";
+import "./Nav.css";
 
 function SecondNav() {
-    return (
-        <nav className="navbar bg-secondary row">
-            
 
+    const [isFixed, setIsFixed] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY >= 105) {
+                setIsFixed(true);
+            } else {
+                setIsFixed(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const navbarClasses = isFixed ? 'navbar-fixed' : 'navbar';
+
+    return (
+        <nav className={`row ${navbarClasses}`} id="second-navbar">
+            
                 <div className="col-2 text-center">
                     <div className="dropdown">
                         <button
-                            className="btn btn-secondary dropdown-toggle"
+                            className="btn dropdown-toggle"
                             type="button"
                             id="dropdownMenuButton"
                             data-toggle="dropdown"
@@ -39,7 +59,7 @@ function SecondNav() {
                 <div className="col-2 text-center">
                     <div className="dropdown">
                         <button
-                            className="btn btn-secondary dropdown-toggle"
+                            className="btn dropdown-toggle"
                             type="button"
                             id="dropdownMenuButton"
                             data-toggle="dropdown"
@@ -69,7 +89,7 @@ function SecondNav() {
                 <div className="col-2 text-center">
                     <div className="dropdown">
                         <button
-                            className="btn btn-secondary dropdown-toggle"
+                            className="btn dropdown-toggle"
                             type="button"
                             id="dropdownMenuButton"
                             data-toggle="dropdown"
@@ -101,7 +121,7 @@ function SecondNav() {
                 <div className="col-2 text-center">
                     <div className="dropdown">
                         <button
-                            className="btn btn-secondary dropdown-toggle"
+                            className="btn dropdown-toggle"
                             type="button"
                             id="dropdownMenuButton"
                             data-bs-toggle="dropdown"
@@ -124,7 +144,7 @@ function SecondNav() {
                 <div className="col-2 text-center">
                     <div>
                         <button
-                            className="btn btn-secondary"
+                            className="btn"
                             type="button"
                             id="MenuButton"
                         >
@@ -137,7 +157,7 @@ function SecondNav() {
                 <div className="col-2 text-center">
                     <div>
                         <button
-                            className="btn btn-secondary"
+                            className="btn"
                             type="button"
                             id="MenuButton"
                         >
@@ -145,10 +165,7 @@ function SecondNav() {
                         </button>
                     </div>
                 </div>
-
-
-        
-        
+            
         </nav >
     );
 }
