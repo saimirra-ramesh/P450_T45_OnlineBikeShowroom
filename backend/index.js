@@ -1,7 +1,7 @@
 express = require('express');
 mongoose = require('mongoose');
 mongoose.set("strictQuery",true);
-//const cors = require("cors"); //not installed in node modules yet
+const cors = require("cors"); //not installed in node modules yet
 const bodyParser = require("body-parser");
 const { PORT, dburl } = require('./config.js');
 
@@ -11,7 +11,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));//to get id from url 
-//app.use(cors());
+app.use(cors());
 
 //app.use("/productRoute",productRoute);
 app.use("/products", prodRoute);
