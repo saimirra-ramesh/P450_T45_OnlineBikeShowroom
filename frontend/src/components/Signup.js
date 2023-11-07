@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faPhone, faLock, faMapMarker } from "@fortawesome/free-solid-svg-icons";
 import './Signup.css';
@@ -61,7 +62,9 @@ function Signup() {
         </div>
         <br />
         <div className="sign_up">
-          Head to the <a href="./Login.js">Login Page!</a>
+          <Link className="nav-link" to="/login" id="login">
+            Login Page!
+          </Link>
         </div>
       </form>
     </div>
