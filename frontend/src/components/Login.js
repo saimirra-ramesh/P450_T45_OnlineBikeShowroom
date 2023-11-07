@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'; 
 import './Login.css';
 
 function Login() {
@@ -9,13 +11,13 @@ function Login() {
         <div className="input_box">
           <input type="text" placeholder="  Username" required />
           <div className="icon">
-            <i className="fas fa-user"></i>
+            <FontAwesomeIcon icon={faUser} /> {/* Font Awesome icon for user */}
           </div>
         </div>
         <div className="input_box">
           <input type="password" placeholder="  Password" required />
           <div className="icon">
-            <i className="fas fa-lock"></i>
+            <FontAwesomeIcon icon={faLock} /> {/* Font Awesome icon for lock */}
           </div>
         </div>
         <div className="input_box button">
