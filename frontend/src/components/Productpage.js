@@ -27,10 +27,10 @@ function Home() {
 
   return (
     <div>
-      <h2>Home Page and all required stuff, with products for sale below</h2>
+      <h2 style={{color: "#000000",}}>Home Page and all required stuff, with products for sale below</h2>
       <ul>
         {products.map((product) => (
-          <li key={product._id} onClick={() => handleProductClick(product)}>
+          <li style={{color: "#FFFFFF"}} key={product._id} onClick={() => handleProductClick(product)}>
             {product.name}
           </li>
         ))}
