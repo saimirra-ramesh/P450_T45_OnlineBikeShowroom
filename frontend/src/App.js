@@ -5,6 +5,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Nav from './components/Nav';
 import Productpage from './components/Productpage';
+import Producttilesview from './components/producttilesview';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} /> 
+          <Route path="/tiles" element={<Producttilesview />} />
         </Routes>
       </HashRouter>
     </div>
