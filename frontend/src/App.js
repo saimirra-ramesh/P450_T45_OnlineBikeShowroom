@@ -8,6 +8,11 @@ import Productpage from './components/Productpage';
 import Producttilesview from './components/producttilesview';
 import Signup from './components/Signup';
 import Login from './components/Login'; 
+import Dashboard from './components/Dashboard';
+import AddBike from './components/AddBike';
+import EditBike from './components/EditBike';
+import DeleteBike from './components/DeleteBike';
+
 
 function App() {
   return (
@@ -21,6 +26,9 @@ function App() {
           <Route path="/tiles" element={<Producttilesview />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} /> 
+          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/add-bike" element={<AddBike />} />
+          <Route path="/delete-bike" element={<DeleteBike />} />
         </Routes>
       </HashRouter>
     </div>

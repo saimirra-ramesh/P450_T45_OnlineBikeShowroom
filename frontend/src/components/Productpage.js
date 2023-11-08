@@ -33,7 +33,7 @@ function Home() {
 
       <ul>
         {products.map((product) => (
-          <li key={product._id} onClick={() => handleProductClick(product)}>
+          <li style={{color: "#FFFFFF"}} key={product._id} onClick={() => handleProductClick(product)}>
             {product.name}
           </li>
         ))}

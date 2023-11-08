@@ -1,0 +1,83 @@
+.form-group {
+    margin-bottom: 20px; /* Adjust the margin as needed */
+  }
+
+  /* Add this CSS to your styles.css or a separate CSS file */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+  }
+
+  .button-link {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 14px;
+  }
+  
+  .button-link:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Center content within table cells */
+  table td {
+    text-align: center;
+  }
+  
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust this value if needed */
+    text-align: center;
+  }
+
+
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .styled-table th, .styled-table td {
+    padding: 10px; /* Adjust the padding value as needed */
+    border: 1px solid #ddd;
+  }
+  
+  .styled-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .button-link {
+    /* Your button styles here */
+  }
+  
+  .button-link:hover {
+    /* Your button hover styles here */
+  }
+  
+  
