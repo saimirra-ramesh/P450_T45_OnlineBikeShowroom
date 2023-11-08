@@ -1,0 +1,21 @@
+#footer {
+    /* background-color: rgb(39, 39, 39); */
+    background-color: black;
+}
+
+p{
+    color: rgb(154, 152, 154);
+}
+
+a{
+    text-decoration: none;
+    color: rgb(154, 152, 154);
+}
+
+a:hover{
+    color: white;
+}
+
+.nav-link{
+    color: rgb(154, 152, 154);
+}

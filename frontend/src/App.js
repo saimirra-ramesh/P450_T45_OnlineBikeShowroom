@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard';
 import AddBike from './components/AddBike';
 import EditBike from './components/EditBike';
 import DeleteBike from './components/DeleteBike';
+import Footer from './components/Footer.js';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/add-bike" element={<AddBike />} />
           <Route path="/delete-bike" element={<DeleteBike />} />
         </Routes>
+        <Footer />
       </HashRouter>
     </div>
   );

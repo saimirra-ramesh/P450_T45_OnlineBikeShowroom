@@ -47,10 +47,7 @@ function SecondNav() {
                                 Upcoming Bikes
                             </Link>
                             <Link className="dropdown-item" to="/item2">
-                                Showrooms
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Service Centers
+                                Accessories
                             </Link>
                         </div>
                     </div>
@@ -76,10 +73,7 @@ function SecondNav() {
                                 Upcoming Super Bikes
                             </Link>
                             <Link className="dropdown-item" to="/item2">
-                                Showrooms
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Service Centers
+                                Accessories
                             </Link>
                         </div>
                     </div>
@@ -109,10 +103,7 @@ function SecondNav() {
                                 Electric Scooters
                             </Link>
                             <Link className="dropdown-item" to="/item2">
-                                Showrooms
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Service Centers
+                                Accessories
                             </Link>
                         </div>
                     </div>
@@ -148,7 +139,7 @@ function SecondNav() {
                             type="button"
                             id="MenuButton"
                         >
-                            Sell Bike
+                            Sell Bikes
                         </button>
                     </div>
                 </div>
