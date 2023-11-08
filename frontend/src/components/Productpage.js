@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchProducts } from '../components/Product';
 import ProductView from './ProductView';
-import './ProductView.css'; // Import the CSS file
+import './ProductView.css'; 
 import Nav from './Nav.js';
 
 function Home() {
@@ -29,16 +29,20 @@ function Home() {
   return (
     <div>
       <Nav />
-      <h2>Home Page and all required stuff, with products for sale below</h2>
-
+      <h2>Demo Product page</h2>
+      <div>
       <ul>
         {products.map((product) => (
-          <li style={{color: "#FFFFFF"}} key={product._id} onClick={() => handleProductClick(product)}>
+          <li
+          style={{ color: "#FFFFFF", cursor: "pointer" }}
+          key={product._id}
+          onClick={() => handleProductClick(product)}
+        >
             {product.name}
           </li>
         ))}
       </ul>
-
+      </div>
       {selectedProduct && <ProductView product={selectedProduct} />}
     </div>
   );
