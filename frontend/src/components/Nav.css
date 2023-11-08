@@ -47,7 +47,25 @@
 .row{
     margin-right: auto;
     margin-left: auto;
-    background-color: rgba(186,35,28,255);
+    /* background-color: rgba(186,35,28,255); red */
+}
+
+#first-navbar{
+    /* background-color: rgb(27, 27, 27); */
+    background-color: rgb(39, 39, 39);
+    color: grey;
+}
+
+.navbar-brand{
+    color: rgb(236, 7, 7);
+    /* color: rgb(26, 253, 75); ben10 */
+    /* color: rgb(253, 211, 26); yellow */
+    /* color: rgb(121, 7, 214); purple */
+    /* color: rgb(7, 214, 186); blue-green */
+}
+
+.navbar-brand:hover{
+    color: rgb(253, 26, 26);
 }
 
 #second-navbar{
@@ -70,3 +88,7 @@
 #login:hover{
     color: white;
 } 
+
+#search:hover{
+    background-color: rgb(56, 56, 56);
+}
