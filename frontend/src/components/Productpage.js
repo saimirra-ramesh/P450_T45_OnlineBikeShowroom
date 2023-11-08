@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchProducts } from '../components/Product';
 import ProductView from './ProductView';
-import './ProductView.css'; // Import the CSS file
+import './ProductView.css'; 
 import Nav from './Nav.js';
 
 function Home() {

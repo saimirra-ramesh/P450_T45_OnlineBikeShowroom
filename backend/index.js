@@ -1,7 +1,7 @@
 express = require('express');
 mongoose = require('mongoose');
 mongoose.set("strictQuery",true);
-const cors = require("cors"); //not installed in node modules yet
+const cors = require("cors"); //allow frontend to access backend
 const bodyParser = require("body-parser");
 const { PORT, dburl } = require('./config.js');
 
@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));//to get id from url 
 app.use(cors());
 
-//app.use("/productRoute",productRoute);
 app.use("/products", prodRoute);
 
 app.listen(PORT, () => {
