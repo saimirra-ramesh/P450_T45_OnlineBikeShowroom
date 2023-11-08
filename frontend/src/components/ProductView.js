@@ -13,19 +13,21 @@ const ProductView = ({ product }) => {
   return (
     <div className="product-view-container">
       <div className="product-image">
+        
         <img src={product.imageUrl} alt={product.name} />
       </div>
-      <div className="product-details">
-        <h2 style={{color: "#000000",}} >{product.name}</h2>
+      <div style={{color: "#FFFFFF"}} className="product-details">
+        <h2 >{product.name}</h2>
         <h4><p>Brand: {product.brand}</p></h4>
         <p>Category: {product.category}</p>
+        <p>Color: {product.color}</p>
         <div>
           <h4>10% Off!</h4>
           <h3>Price: ${product.price}</h3>
           <s>MRP: ${product.price + product.price / 10}</s> Inclusive of all taxes.
         </div>
         <p>Rating: <RatingStars rating={product.rating} /></p>
-
+       
         
         <div className="action-buttons">
           <button className="add-to-cart-btn" onClick={handleAddToCart}>Add to Cart</button>

@@ -5,7 +5,7 @@
   
   .product-image {
     flex: 1;
-    margin-right: 20px;
+    margin-right: 1px;
   }
   
   .product-image img {
@@ -17,9 +17,13 @@
     flex: 1;
   }
   .product-details {
+    text-align: left;
     display: flex;
     flex-direction: column;
   }
+  a:hover {
+    cursor:pointer;
+   }
   
   .rating-container {
     display: flex;
@@ -66,4 +70,9 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+  }
+
+  .corr {
+    text-align: left;
+    border: 3px solid green;
   }
