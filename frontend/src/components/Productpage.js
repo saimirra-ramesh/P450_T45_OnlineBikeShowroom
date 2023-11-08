@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchProducts } from '../components/Product';
 import ProductView from './ProductView';
 import './ProductView.css'; // Import the CSS file
+import Nav from './Nav.js';
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -27,7 +28,9 @@ function Home() {
 
   return (
     <div>
+      <Nav />
       <h2>Home Page and all required stuff, with products for sale below</h2>
+
       <ul>
         {products.map((product) => (
           <li key={product._id} onClick={() => handleProductClick(product)}>
