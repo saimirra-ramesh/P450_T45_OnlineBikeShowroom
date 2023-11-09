@@ -27,28 +27,28 @@ app.get("/", (req, res) => {
 });
 
 
-const connectUsersDB = async () => {
-    try {
-        await mongoose.connect(usersDbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-        console.log("Connected to Users DB");
-    } catch (error) {
-        console.log(error);
-    }
-};
+// const connectUsersDB = async () => {
+//     try {
+//         await mongoose.connect(usersDbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+//         console.log("Connected to Users DB");
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
 
-const connectBikeDB = async () => {
-    try {
-        const bikeConnection = mongoose.createConnection(bikeDbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-        bikeConnection.on('open', () => {
-            console.log('Connected to Bike DB');
-        });
-        bikeConnection.on('error', (error) => {
-            console.log(error);
-        });
-    } catch (error) {
-        console.log(error);
-    }
-};
+// const connectBikeDB = async () => {
+//     try {
+//         const bikeConnection = mongoose.createConnection(bikeDbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+//         bikeConnection.on('open', () => {
+//             console.log('Connected to Bike DB');
+//         });
+//         bikeConnection.on('error', (error) => {
+//             console.log(error);
+//         });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
 
-connectUsersDB();
-connectBikeDB();
+// connectUsersDB();
+// connectBikeDB();
