@@ -40,7 +40,7 @@ const ProductView = ({ product }) => {
         
       </div>
       </div>
-      <div style={{color: "#FFFFFF"}}>
+      <div style={{color: "#FFFFFF", marginTop:'20px'} }>
           <h3>Specifications</h3>
           <table>
             <tbody>
