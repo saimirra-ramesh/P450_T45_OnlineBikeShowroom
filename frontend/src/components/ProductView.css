@@ -1,78 +1,120 @@
 .product-view-container {
-    display: flex;
-    padding: 20px;
-  }
+  display: flex;
+  flex-direction: column; /* stack children vertically */
+  margin-right: 1%;
+  margin-left: 1%;
   
-  .product-image {
-    flex: 1;
-    margin-right: 1px;
-  }
-  
-  .product-image img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .product-details {
-    flex: 1;
-  }
-  .product-details {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-  }
-  a:hover {
-    cursor:pointer;
-   }
-  
-  .rating-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .rating-stars {
-    color: #ffd700; 
-    font-size: 1.5em;
-  }
-  
-  .star {
-    margin-right: 3px;
-  }
-  .add-to-cart-btn {
-    max-width: 150px; 
-    width: 100%; 
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .add-to-cart-btn:hover {
-    background-color: #0056b3; 
-  }
-  .compare-btn {
-    max-width: 150px;
-    width: 100%;
-    background-color: #28a745; 
-    padding: 8px 12px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-  }
+}
 
-  .compare-btn:hover {
-    background-color: #218838; 
-  }
-  
-  .action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
+.product-view-container table {
+  width: 100%; /* make the table expand to the full width of its container */
+  border-collapse: collapse; /* collapse borders into a single border */
 
-  .corr {
-    text-align: left;
-    border: 3px solid green;
-  }
+}
+
+.product-image {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  display: flex;
+  margin-right: 1px;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  justify-content: center; /* centers children horizontally */
+  align-items: center; 
+}
+.product-image img{
+  padding-left:10px;
+  height: 450px;
+}
+.product-view-container table td:first-child {
+  text-align: left;
+  background-color: rgb(24,24,24);/* change the background color to gray */
+}
+
+.product-details {
+  flex: 1 1 50%;
+  text-align: left;
+  margin-right: 40px;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.discount {
+  font-size: 15px; /* or whatever size you want */
+}
+
+.product-details h1 {
+  color: red;
+  text-align: left; 
+  
+}
+.rating-stars {
+  color: #ffd700; 
+  font-size: 1.5em;
+}
+
+.star {
+  margin-right: 3px;
+}
+.add-to-cart-btn {
+  max-width: 150px; 
+  width: 100%; 
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3; 
+}
+
+.compare-btn {
+  max-width: 150px;
+  width: 100%;
+  background-color: #28a745; 
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.compare-btn:hover {
+  background-color: #218838; 
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px
+}
+.product-details h3,
+.product-details .discount,
+.product-details s {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.product-view-container table, .product-view-container th, .product-view-container td {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-left: none;
+  border-right: none;
+  height: 50px;
+  
+}
+.product-top-section {
+  display: flex; /* place children side by side */
+}
+
+.product-details {
+  flex: 1 0 50%; /* grow: 1, shrink: 0, basis: 50% */
+  /* other styles... */
+}

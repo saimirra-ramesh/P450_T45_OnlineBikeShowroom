@@ -8,7 +8,13 @@ const productSchema = new mongoose.Schema({
   category: {type: String},
   imageUrl:{type: String},
   rating: {type: Number},
-  color:{type: String}
+  color:{type: String},
+  brake:{type: String},
+  fuelcapacity:{type: String},
+  mileage:{type: Number},
+  enginetype:{type: String},
+  displacement:{type: Number},
+  seater:{type: String},
 },{
   collection:"bike"
 });
