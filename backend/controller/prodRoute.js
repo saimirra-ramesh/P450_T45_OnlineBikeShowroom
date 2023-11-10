@@ -1,6 +1,10 @@
 const express = require("express");
-const Product = require("../models/productSchema");
 const prodRoute = new express.Router();
+
+const bikeSchema = require("../models/productSchema");
+const bikeDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/bike?retryWrites=true&w=majority");
+const Product = bikeDbUrl.model("bike", bikeSchema);
+
 
 // Get all products
 prodRoute.get("/", async (req, res) => {

@@ -1,14 +1,5 @@
 const mongoose = require('mongoose');
 
-mongoose.connection.close(function () {
-  mongoose.connect('mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/bike', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
-    console.log('Connected to bike database');
-})
-.catch((error) => {
-    console.log(error);
-});
-});
-
 const productSchema = new mongoose.Schema({
   name: {type: String},
   description:{type: String},
@@ -28,6 +19,6 @@ const productSchema = new mongoose.Schema({
   collection:"bike"
 });
 
-const Product = mongoose.model('bike', productSchema, 'bike');
 
-module.exports = Product;
+// Export schema
+module.exports = productSchema;
