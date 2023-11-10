@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/userSchema');
+
+const userSchema = require("../models/userSchema");
+const usersDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Users?retryWrites=true&w=majority");
+const User = usersDbUrl.model("User", userSchema);
 
 // Signup route
 router.post('/signup', async (req, res) => {
