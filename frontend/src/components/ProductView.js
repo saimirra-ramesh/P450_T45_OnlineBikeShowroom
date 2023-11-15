@@ -22,7 +22,7 @@ const ProductView = ({ product }) => {
         Category: {product.category}
         <p>Color: {product.color}</p>
         <div className="rating-container" >
-        <p>Rating:<RatingStars rating={Number(product.rating)} /> </p>
+        <div>Rating:  <RatingStars rating={Number(product.rating)} /></div>
         </div>
         <div>
           
