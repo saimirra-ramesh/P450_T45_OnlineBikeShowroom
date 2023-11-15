@@ -112,9 +112,17 @@
 }
 .product-top-section {
   display: flex; /* place children side by side */
+  padding-right: 4%;
 }
 
 .product-details {
-  flex: 1 0 50%; /* grow: 1, shrink: 0, basis: 50% */
+  flex: 1 1 50%; /* grow: 1, shrink: 0, basis: 50% */
   /* other styles... */
+}
+.specs {
+  padding-left:9%;
+  padding-right:7%;
+}
+.specs td:first-child{
+  padding-left: 1%;
 }

@@ -22,7 +22,7 @@ const ProductView = ({ product }) => {
         Category: {product.category}
         <p>Color: {product.color}</p>
         <div className="rating-container" >
-        <h7>Rating: <RatingStars rating={product.rating} /></h7>
+        <p>Rating:<RatingStars rating={Number(product.rating)} /> </p>
         </div>
         <div>
           
@@ -40,7 +40,7 @@ const ProductView = ({ product }) => {
         
       </div>
       </div>
-      <div style={{color: "#FFFFFF", marginTop:'20px'} }>
+      <div className="specs" style={{color: "#FFFFFF", marginTop:'20px'} }>
           <h3>Specifications</h3>
           <table>
             <tbody>
