@@ -22,7 +22,6 @@ export const fetchProductById = async (productId) => {
     throw error;
   }
 };
-
 export const deleteProduct = async (productId) => {
   await axios.delete(`${API_URL}/products/${productId}`);
 };
