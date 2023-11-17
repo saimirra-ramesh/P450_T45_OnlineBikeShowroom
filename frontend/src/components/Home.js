@@ -1,4 +1,3 @@
-import "./Home.css";
 import Nav from './Nav.js';
 
 function Home() {

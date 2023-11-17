@@ -1,4 +1,3 @@
-// components/Home.js
 import React, { useState, useEffect } from 'react';
 import { fetchProducts } from '../components/Product';
 import ProductView from './ProductView';

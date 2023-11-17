@@ -1,8 +1,5 @@
-#footer {
-    /* background-color: rgb(39, 39, 39); */
-    background-color: black;
-    position: fixed;
-    bottom: 0;
+footer{
+    background-color: rgb(39, 39, 39);
 }
 
 p{

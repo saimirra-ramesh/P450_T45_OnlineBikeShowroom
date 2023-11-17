@@ -30,7 +30,8 @@
 }
 .product-view-container table td:first-child {
   text-align: left;
-  background-color: rgb(24,24,24);/* change the background color to gray */
+  background-color: rgb(24,24,24);
+  /* change the background color to gray */
 }
 
 .product-details {
@@ -49,7 +50,7 @@
 }
 
 .discount {
-  font-size: 15px; /* or whatever size you want */
+  font-size: 15px;
 }
 
 .product-details h1 {
