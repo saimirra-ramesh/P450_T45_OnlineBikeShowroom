@@ -46,8 +46,8 @@ const ProductView = () => {
         <div className="product-image">
         <img src={product?.imageUrl} alt={product?.name} />
         </div>
-        <div style={{ color: "#FFFFFF", paddingRight: '10px' }} className="product-details">
-          <h1 >{product.name}</h1>
+        <div style={{ color: "#000000", paddingRight: '10px' }} className="product-details">
+          <h1 style={{ color: "#000000"}}>{product.name}</h1>
           <h4>Brand: {product.brand}</h4>
           Category: {product.category}
           <p>Color: {product.color}</p>
@@ -57,10 +57,12 @@ const ProductView = () => {
           <div>
 
             <h3>Price: ${product.price}</h3>
+            
             <p className="discount" >10% Off!</p>
             <s style={{ color: 'grey' }}>MRP: ${product.price + product.price / 10}</s> Inclusive of all taxes.
           </div>
           <div style={{ marginTop: '10px' }}>
+          <hr style={{ borderColor: 'grey', margin: '5px 0' }} />
             Bike Description: {product.description}
           </div>
           <div className="action-buttons">
@@ -70,8 +72,8 @@ const ProductView = () => {
 
         </div>
       </div>
-      <div className="specs" style={{ color: "#FFFFFF", marginTop: '20px' }}>
-        <h3>Specifications</h3>
+      <div className="specs" style={{ color: "#000000", marginTop: '40px', marginBottom : '40px' }}>
+        <h3 style={{ color: 'black' }}>Specifications</h3>
         <table>
           <tbody>
             <tr>
