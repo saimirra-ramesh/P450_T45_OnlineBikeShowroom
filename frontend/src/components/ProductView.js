@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import RatingStars from './RatingStars';
 import axios from 'axios';
 import './ProductView.css'; 
-import { useParams, Link } from 'react-router-dom';
-import { fetchProductById } from './Product'; // Update the import
+import { useParams} from 'react-router-dom';
 import Nav from './Nav.js';
 
 const ProductView = () => {
