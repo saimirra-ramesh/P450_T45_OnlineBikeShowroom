@@ -14,8 +14,13 @@ export const fetchProducts = async () => {
 };
 
 export const fetchProductById = async (productId) => {
-  const response = await axios.get(`${API_URL}/${productId}`);
-  return response.data;
+  try {
+    const response = await axios.get(`${API_URL}/products/${productId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching product by ID:', error);
+    throw error;
+  }
 };
 
 export const deleteProduct = async (productId) => {
