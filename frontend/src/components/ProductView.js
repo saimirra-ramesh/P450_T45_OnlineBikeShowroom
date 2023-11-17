@@ -47,6 +47,7 @@ const ProductView = () => {
         <img src={product?.imageUrl} alt={product?.name} />
         </div>
         <div style={{ color: "#000000", paddingRight: '10px' }} className="product-details">
+        <div style={{ flex: 1 }}>
           <h1 style={{ color: "#000000"}}>{product.name}</h1>
           <h4>Brand: {product.brand}</h4>
           Category: {product.category}
@@ -64,6 +65,7 @@ const ProductView = () => {
           <div style={{ marginTop: '10px' }}>
           <hr style={{ borderColor: 'grey', margin: '5px 0' }} />
             Bike Description: {product.description}
+          </div>
           </div>
           <div className="action-buttons">
             <button className="add-to-cart-btn" onClick={handleAddToCart}>Add to Cart</button>

@@ -24,10 +24,12 @@
   justify-content: center; /* centers children horizontally */
   align-items: center; 
 }
+
 .product-image img{
   padding-left:10px;
   height: 450px;
 }
+
 .product-view-container table td:first-child {
   text-align: left;
   background-color: rgb(240,242,242);
@@ -38,8 +40,7 @@
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  /* fix height here */
   text-align: left;
   margin-right: 40px;
 }
@@ -117,7 +118,7 @@
 }
 .product-top-section {
   display: flex; /* place children side by side */
-  
+  min-height: 400px;
   padding-right: 4%;
 }
 .specs {
