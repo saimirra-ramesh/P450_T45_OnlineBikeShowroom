@@ -3,6 +3,7 @@ import RatingStars from './RatingStars';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { fetchProductById } from './Product'; // Update the import
+import Nav from './Nav.js';
 
 const ProductView = () => {
   const [product, setProduct] = useState(null);
@@ -36,7 +37,11 @@ const ProductView = () => {
   };
 
   return (
+    <div>
+<Nav />
+    
     <div className="product-view-container">
+      
       <div className="product-top-section">
         <div className="product-image">
         <img src={product?.imageUrl} alt={product?.name} />
@@ -96,6 +101,7 @@ const ProductView = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
 
 
