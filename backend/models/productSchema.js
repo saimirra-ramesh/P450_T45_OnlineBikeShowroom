@@ -19,6 +19,7 @@ const productSchema = new mongoose.Schema({
   collection:"bike"
 });
 
+productSchema.index({name: 'text',  brand: 'text', description: 'text'});
 
 // Export schema
 module.exports = productSchema;
