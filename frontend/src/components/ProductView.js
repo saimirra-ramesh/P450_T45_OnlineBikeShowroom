@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import RatingStars from './RatingStars';
+import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import { fetchProductById } from './Product'; // Update the import
 
-const ProductView = ({ product }) => {
+const ProductView = () => {
+  const [product, setProduct] = useState(null);
+  const { productId } = useParams();
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5555/products/${productId}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      }
+    };
 
-  console.log('Product prop:', product);
+    fetchProduct();
+  }, [productId]);
+
+  
+  console.log('Product prop:');
 
   if (!product) {
     return <div>Product Undefined</div>;  
