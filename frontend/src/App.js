@@ -10,7 +10,8 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import AddBike from './components/AddBike';
-import DeleteBike from './components/DeleteBike';
+import ProductView from './components/ProductView';
+import ProductUpdate from './components/ProductUpdate.js';
 import Footer from './components/Footer.js';
 import SearchResultPage from './components/SearchResultPage.js';
 
@@ -29,7 +30,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/add-bike" element={<AddBike />} />
-          <Route path="/delete-bike" element={<DeleteBike />} />
+          <Route path="/products/:productId" element={<ProductView />} />
+          <Route path="/products/:productId/update" element={<ProductUpdate />} />
 
           {/* To get search results on a separate page 
               To get search results as a part of the Nav bar itself, remove below line

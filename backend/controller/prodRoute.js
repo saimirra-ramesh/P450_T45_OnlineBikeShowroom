@@ -65,5 +65,63 @@ prodRoute.get("/:productId", async (req, res) => {
   }
 });
 
+// Add a new product
+prodRoute.post("/add-bike", async (req, res) => {
+  const newProduct = new Product(req.body);
+
+  try {
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error("Error adding product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Update a product by ID
+prodRoute.put("/:productId/update", async (req, res) => {
+  const productId = req.params.productId;
+
+  try {
+    // Fetch the existing product
+    const existingProduct = await Product.findById(productId);
+
+    if (!existingProduct) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    // Update only the fields provided in the request body
+    Object.keys(req.body).forEach((field) => {
+      existingProduct[field] = req.body[field];
+    });
+
+    // Save the updated product
+    const updatedProduct = await existingProduct.save();
+
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Delete a product by ID
+prodRoute.delete("/:productId", async (req, res) => {
+  const productId = req.params.productId;
+
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(productId);
+
+    if (!deletedProduct) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 module.exports = prodRoute;
