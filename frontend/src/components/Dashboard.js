@@ -1,92 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DeleteConfirmationDialog from './DeleteBike';
+import { fetchProducts, deleteProduct } from '../components/Product';
+import Nav from './Nav.js';
 
 const Dashboard = () => {
-  // Sample bike data
-  const bikes = [
-    { id: 1, image: '/images/bike1.jpg', title: 'Bike 1', model: 'Model 1' },
-    { id: 2, image: '/images/bike1.jpg', title: 'Bike 2', model: 'Model 2' },
-    { id: 3, image: '/images/bike1.jpg', title: 'Bike 3', model: 'Model 3' },
-  ];
+  const [products, setProducts] = useState([]);
 
-  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [bikeToDelete, setBikeToDelete] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productsData = await fetchProducts();
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
 
-  const openDeleteDialog = (bike) => {
-    setBikeToDelete(bike);
-    setDeleteDialogOpen(true);
-  };
+    fetchData();
+  }, []);
 
-  const closeDeleteDialog = () => {
-    setBikeToDelete(null);
-    setDeleteDialogOpen(false);
+  const handleDelete = async (productId) => {
+
+    const isConfirmed = window.confirm('Are you sure you want to delete this product?');
+
+    if (isConfirmed) {
+      try {
+        await deleteProduct(productId);
+        // Refresh the product list after deletion
+        const updatedProducts = await fetchProducts();
+        setProducts(updatedProducts);
+      } catch (error) {
+        console.error('Error deleting product:', error);
+      }
+    }
   };
 
   return (
-    <div>
+    
+    <div style={{ backgroundColor: 'black', color: 'white'}}>
+      <Nav />
+      <Link to="/add-bike" className="button">Add Product</Link>
+      <h2>Product List </h2>
       <p></p>
-      <Link to="/add-bike" className='button-link'>
-        Add Bike
-      </Link>
-      <p></p>
-      <table style={{ width: '100%', border: '1px solid #ddd', borderCollapse: 'collapse',padding: '10px' }}>
+      <table style={{ width: '100%' }}>
         <thead>
           <tr>
-            <th style={{ border: '1px solid #ddd'}}>Image</th>
-            <th style={{ border: '1px solid #ddd' }}>Bike Title</th>
-            <th style={{ border: '1px solid #ddd' }}>Bike Model</th>
-            <th style={{ border: '1px solid #ddd' }}>Actions</th>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Brand</th>
+            <th>Image</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {bikes.map((bike) => (
-            <tr key={bike.id}>
-              <td style={{ border: '1px solid #ddd' }}>
-              <img
-                src={bike.image}
-                alt="Bike"
-                style={{ width: '100px', height: '100px' }}
-              />
+          {products.map((product) => (
+            <tr key={product._id}>
+              <td>{product.category}</td>
+              <td>{product.name}</td>
+              <td>{product.price}</td>
+              <td>{product.brand}</td>
+              <td>
+                <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '50px', maxHeight: '50px' }} />
               </td>
-              <td style={{ border: '1px solid #ddd' }}>{bike.title}</td>
-              <td style={{ border: '1px solid #ddd' }}>{bike.model}</td>
-              <td style={{ border: '1px solid #ddd' }}>
-                <Link to={`/view-bike/${bike.id}`} className="button-link">
-                  View
-                </Link>{' '}
-                |{' '}
-                <Link to={`/update-bike/${bike.id}`} className="button-link">
-                  Update
-                </Link>{' '}
-                |{' '}
-                <button
-                  className="button-link"
-                  onClick={() => openDeleteDialog(bike)}
-                >
-                  Delete
-                </button>
+              <td>
+                <Link to={`/products/${product._id}`} className="button view-button">View</Link>{' '}
+                <Link to={`/products/${product._id}/update`} className="button update-button">Update</Link>{' '}
+                <button onClick={() => handleDelete(product._id)} className="button delete-button">Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {isDeleteDialogOpen && (
-  <div className="modal">
-    <div className="modal-content">
-      <DeleteConfirmationDialog
-        bike={bikeToDelete}
-        onCancel={closeDeleteDialog}
-        onConfirmDelete={() => {
-          // Add logic to delete the bike here.
-          // After successful deletion, close the dialog.
-          closeDeleteDialog();
-        }}
-      />
-    </div>
-  </div>
-)}
     </div>
   );
 };
