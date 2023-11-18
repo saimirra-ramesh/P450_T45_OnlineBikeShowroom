@@ -3,7 +3,7 @@
   flex-direction: column; /* stack children vertically */
   margin-right: 1%;
   margin-left: 1%;
-  
+  margin-top: 3%;
 }
 
 .product-view-container table {
@@ -24,17 +24,23 @@
   justify-content: center; /* centers children horizontally */
   align-items: center; 
 }
+
 .product-image img{
   padding-left:10px;
   height: 450px;
 }
+
 .product-view-container table td:first-child {
   text-align: left;
-  background-color: rgb(24,24,24);/* change the background color to gray */
+  background-color: rgb(240,242,242);
+  /* change the background color to gray */
 }
 
 .product-details {
   flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  /* fix height here */
   text-align: left;
   margin-right: 40px;
 }
@@ -45,7 +51,7 @@
 }
 
 .discount {
-  font-size: 15px; /* or whatever size you want */
+  font-size: 15px;
 }
 
 .product-details h1 {
@@ -103,8 +109,8 @@
 }
 
 .product-view-container table, .product-view-container th, .product-view-container td {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid rgb(187,191,191);
+  border-bottom: 1px solid rgb(187,191,191);
   border-left: none;
   border-right: none;
   height: 50px;
@@ -112,9 +118,13 @@
 }
 .product-top-section {
   display: flex; /* place children side by side */
+  min-height: 400px;
+  padding-right: 4%;
 }
-
-.product-details {
-  flex: 1 0 50%; /* grow: 1, shrink: 0, basis: 50% */
-  /* other styles... */
+.specs {
+  padding-left:9%;
+  padding-right:7%;
+}
+.specs td:first-child{
+  padding-left: 1%;
 }

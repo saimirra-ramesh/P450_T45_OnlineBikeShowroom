@@ -1,10 +1,9 @@
-import "./Home.css";
 import Nav from './Nav.js';
 
 function Home() {
     return (
         <div className="HomePage">
-            <Nav />
+            <Nav/>
             <div id="carouselIndicators" className="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

@@ -40,6 +40,28 @@ prodRoute.get('/search', async (req, res) => {
 });
 
 
+// Search for a product using the search bar
+prodRoute.get('/search', async (req, res) => {
+  try {
+    const { query } = req.query;
+    // console.log('Received search query:', query);
+
+    const results = await Product.find({
+      $text: { $search: query },
+    });
+
+    res.status(200).json(results);
+    // console.log("Search results: ", results);
+  }
+
+  catch (error) {
+    console.error("Error fetching product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+
+});
+
+
 // Get a specific product by ID
 prodRoute.get("/:productId", async (req, res) => {
   try {

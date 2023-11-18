@@ -63,19 +63,24 @@
   }
 
 
-  .button input {
+   .btnloginsignup input {
+    height: 45px;
+    margin-top: 15px;
+    outline: none;
+    border-radius: 5px;
     padding-left: 0;
     background: #e12918;
     color: #fff;
     border: none;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 450;
     cursor: pointer;
     transition: all 0.3s linear;
     width: 100%;
   }
 
-  .button input:hover {
+  
+  .btnloginsignup input:hover {
     background: #ca340a;
   }
 

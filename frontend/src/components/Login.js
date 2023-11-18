@@ -33,8 +33,8 @@ function Login() {
               <FontAwesomeIcon icon={faLock} />
             </div>
           </div>
-          <div className="input_box button">
-            <input type="submit" value="Login" />
+          <div className="btnloginsignup">
+            <input  type="submit" value="Login" />
           </div>
           <br />
           <div className="option_div">

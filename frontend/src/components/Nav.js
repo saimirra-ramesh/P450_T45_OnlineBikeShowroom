@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass, faUser, faMotorcycle } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faMotorcycle } from "@fortawesome/free-solid-svg-icons";
 import Secondnav from "./Secondnav.js";
+import SearchBar from "./SearchBar.js";
 
 function Nav() {
+
+  const handleSearch = (query) => {
+    console.log('Nav.js, Searching for:', query);
+  };
+
   return (
     <nav className="navbar row" id="first-navbar">
 
@@ -14,24 +20,21 @@ function Nav() {
           </Link>
         </div>
         <div className="col-6 text-center">
-          <div className="input-group">
-            <input type="text" className="form-control" placeholder="Search" />
-            <button className="btn" type="submit" id="search">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-          </div>
+        <SearchBar onSearch={handleSearch} />
         </div>
         <div className="col-3 text-center">
           <Link className="nav-link" to="/login" id="login">
-            <h5> Login <FontAwesomeIcon icon={faUser}/></h5>
+            <h5> Login <FontAwesomeIcon icon={faUser} /></h5>
           </Link>
         </div>
       </div>
 
       <Secondnav />
 
+
     </nav>
 
   )
 }
 export default Nav;
+

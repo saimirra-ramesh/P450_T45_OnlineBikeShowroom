@@ -89,6 +89,17 @@
     color: white;
 } 
 
+#search{
+    border-radius: 0%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 #search:hover{
     background-color: rgb(56, 56, 56);
+}
+
+#search-results{
+    background-color: white;
+    color: black;
 }
