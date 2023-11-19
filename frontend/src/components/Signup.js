@@ -43,7 +43,7 @@ function Signup() {
     console.log('Signup Data:', signupData);
 
     // Send a POST request to your backend
-    fetch('http://localhost:5555/auth/signup', {
+    fetch('http://localhost:3000/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ function Signup() {
         // Redirect to login page or show a success message to the user
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.log( error);
         // Handle error (e.g., show an error message to the user)
       });
   };
