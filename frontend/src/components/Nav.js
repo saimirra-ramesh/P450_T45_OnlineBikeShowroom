@@ -1,32 +1,57 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faMotorcycle } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faMotorcycle, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Secondnav from "./Secondnav.js";
 import SearchBar from "./SearchBar.js";
 
 function Nav() {
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleSearch = (query) => {
     console.log('Nav.js, Searching for:', query);
   };
+
+  const handleLogout = () => {
+
+    // Perform logout logic here
+    setIsLoggedIn(false);
+  };
+
 
   return (
     <nav className="navbar row" id="first-navbar">
 
       <div className="row align-items-center">
+
         <div className="col-3 text-center">
           <Link className="navbar-brand" to="/">
             <h1 className="pt-4">Bikeswale <FontAwesomeIcon icon={faMotorcycle} /> </h1>
           </Link>
         </div>
+
         <div className="col-6 text-center">
-        <SearchBar onSearch={handleSearch} />
+          <SearchBar onSearch={handleSearch} />
         </div>
+
         <div className="col-3 text-center">
-          <Link className="nav-link" to="/login" id="login">
-            <h5> Login <FontAwesomeIcon icon={faUser} /></h5>
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <Link className="nav-link" to="/cart">
+                <h5> Cart <FontAwesomeIcon icon={faShoppingCart} /></h5>
+              </Link>
+              <button className="nav-link" onClick={handleLogout}>
+                <h5> Logout <FontAwesomeIcon icon={faUser} /></h5>
+              </button>
+            </>
+          ) : (
+            <Link className="nav-link" to="/login" id="login">
+              <h5> Login <FontAwesomeIcon icon={faUser} /></h5>
+            </Link>
+          )}
         </div>
+
       </div>
 
       <Secondnav />

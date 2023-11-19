@@ -43,7 +43,7 @@ function Signup() {
     console.log('Signup Data:', signupData);
 
     // Send a POST request to your backend
-    fetch('http://localhost:3000/auth/signup', {
+    fetch('http://localhost:5555/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,6 @@ function Signup() {
       </div>
 
       <div className="main_div">
-        {/* <h2>Bikeswale</h2> */}
 
         <form onSubmit={handleSubmit}>
 
@@ -171,3 +170,4 @@ function Signup() {
 }
 
 export default Signup;
+

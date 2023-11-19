@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faMotorcycle } from '@fortawesome/free-solid-svg-icons';
-// import './Login.css';
 import './Signup.css';
 
 function Login() {
@@ -27,7 +26,7 @@ function Login() {
       password: formData.password,
     };
 
-    fetch('http://localhost:3000/auth/login', {
+    fetch('http://localhost:5555/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +56,6 @@ function Login() {
         </nav>
       </div>
       <div className="main_div">
-        {/* <h2>Bikeswale</h2> */}
         <form onSubmit={handleSubmit}>
           <div className="input_box">
             <input
