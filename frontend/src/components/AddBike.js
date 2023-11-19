@@ -48,6 +48,7 @@ const AddBike = () => {
     <div className="center-content">
       <Nav />
       <h2>Add Bike</h2>
+      
       <form className="add-bike-form" onSubmit={handleSubmit}>
   <div className="form-group">
     <label>Category: </label>
@@ -169,8 +170,9 @@ const AddBike = () => {
   <button type="submit">Submit</button>
 </form>
 
-      <p>{status}</p>
-      <Link to="/admin">Go Back to Dashboard</Link>
+      <p style={{ color: 'red' }}>{status}</p>
+      <Link to="/admin" style={{color:'black'}}>Go Back to Dashboard</Link>
+      <p></p>
     </div>
   );
 };

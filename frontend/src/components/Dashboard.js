@@ -37,19 +37,20 @@ const Dashboard = () => {
 
   return (
     
-    <div style={{ backgroundColor: 'black', color: 'white'}}>
+    <div style={{ backgroundColor: 'white', color: 'black'}}>
       <Nav />
-      <Link to="/add-bike" className="button">Add Product</Link>
-      <h2>Product List </h2>
+      
+      <Link to="/add-bike" className="button add-product-button" >Add Product</Link>
+      {/* <h2>Product List </h2> */}
       <p></p>
-      <table style={{ width: '100%' }}>
+      <table >
         <thead>
           <tr>
             <th>Category</th>
-            <th>Name</th>
-            <th>Price</th>
             <th>Brand</th>
+            <th>Name</th>
             <th>Image</th>
+            <th>Price</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -57,12 +58,12 @@ const Dashboard = () => {
           {products.map((product) => (
             <tr key={product._id}>
               <td>{product.category}</td>
-              <td>{product.name}</td>
-              <td>{product.price}</td>
               <td>{product.brand}</td>
+              <td>{product.name}</td>
               <td>
                 <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '50px', maxHeight: '50px' }} />
               </td>
+              <td>{product.price}</td>
               <td>
                 <Link to={`/products/${product._id}`} className="button view-button">View</Link>{' '}
                 <Link to={`/products/${product._id}/update`} className="button update-button">Update</Link>{' '}
@@ -72,6 +73,7 @@ const Dashboard = () => {
           ))}
         </tbody>
       </table>
+      
     </div>
   );
 };
