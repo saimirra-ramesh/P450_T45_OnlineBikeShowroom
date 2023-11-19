@@ -12,6 +12,7 @@ import ProductView from './components/ProductView';
 import ProductUpdate from './components/ProductUpdate.js';
 import Footer from './components/Footer.js';
 import SearchResultPage from './components/SearchResultPage.js';
+import Cart from './components/Cart.js';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/products/:productId" element={<ProductView />} />
           <Route path="/products/:productId/update" element={<ProductUpdate />} />
           <Route path="/search-results" element={<SearchResultPage/>} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
 
         <Footer />

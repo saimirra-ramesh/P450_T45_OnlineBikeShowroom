@@ -37,7 +37,7 @@ function ProductTilesView() {
                     <Card.Body>
                       <Card.Title>{product.name}</Card.Title>
                       <Card.Text>Cost: {product.price} Lakhs</Card.Text>
-                      <Button variant="dark">Add to Cart</Button>
+                      <Button variant="dark">View Product</Button>
                     </Card.Body>
                   </Link>
                 </Card>

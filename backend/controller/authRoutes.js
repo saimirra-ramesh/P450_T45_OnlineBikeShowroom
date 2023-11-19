@@ -23,4 +23,30 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+// Login route
+router.post('/login', async (req, res) => {
+    try {
+        const { userName, password } = req.body;
+
+        const user = await User.findOne({ userName });
+
+        if (!user) {
+            return res.status(401).json({ success: false, message: 'Invalid user' });
+        }
+
+        if (password === user.password) {
+            res.json({ success: true, message: 'Login successful' });
+        } 
+        else {
+            return res.status(401).json({ success: false, message: 'Invalid password' });
+        }
+        
+        res.json({ success: true, message: 'Login successful' });
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
+
+
 module.exports = router;

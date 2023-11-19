@@ -74,7 +74,7 @@ function Signup() {
       </div>
 
       <div className="main_div">
-        <h2>Bikeswale</h2>
+        {/* <h2>Bikeswale</h2> */}
 
         <form onSubmit={handleSubmit}>
 
@@ -171,3 +171,4 @@ function Signup() {
 }
 
 export default Signup;
+
