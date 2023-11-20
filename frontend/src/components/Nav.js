@@ -1,13 +1,15 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faMotorcycle, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Secondnav from "./Secondnav.js";
 import SearchBar from "./SearchBar.js";
+import { useAuth } from './AuthContext.js';
 
 function Nav() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  console.log("Logged in?: ", isLoggedIn);
 
   const handleSearch = (query) => {
     console.log('Nav.js, Searching for:', query);

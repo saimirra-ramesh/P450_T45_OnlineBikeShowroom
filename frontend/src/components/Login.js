@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faMotorcycle } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from './AuthContext'; 
 import './Signup.css';
 
+
 function Login() {
+  const { setIsLoggedIn } = useAuth();
   const [formData, setFormData] = useState({
     userName: '',
     password: ''
   });
 
-const [errorMessage, setErrorMessage] = useState('');
-const [successMessage, setSuccessMessage] = useState('');
-const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,22 +41,25 @@ const navigate = useNavigate();
       },
       body: JSON.stringify(loginData),
     })
-    .then((response) => response.json())
-    .then((data) => {
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Server response:', data);
         if (data.success) {
-            setErrorMessage('');
-            setSuccessMessage(data.message);
-            navigate('/');
+          console.log('Login successful. Token:', data.token);
+          setErrorMessage('');
+          setSuccessMessage(data.message);
+          setIsLoggedIn(true);
+          navigate('/');
         } else {
-            setSuccessMessage('');
-            setErrorMessage(data.message || 'An error occurred during login.');
+          setSuccessMessage('');
+          setErrorMessage(data.message || 'An error occurred during login.');
         }
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.error('Error:', error);
         setErrorMessage('An error occurred during login.');
-    });
-};
+      });
+  };
 
   return (
 
@@ -60,9 +67,9 @@ const navigate = useNavigate();
       <div>
         <nav className="navbar row">
           <div className="align-items-center">
-              <Link className="navbar-brand" to="/">
-                <h1 className="pt-3">Bikeswale <FontAwesomeIcon icon={faMotorcycle} /> </h1>
-              </Link>
+            <Link className="navbar-brand" to="/">
+              <h1 className="pt-3">Bikeswale <FontAwesomeIcon icon={faMotorcycle} /> </h1>
+            </Link>
           </div>
         </nav>
       </div>
@@ -107,7 +114,7 @@ const navigate = useNavigate();
               <span style={{ marginLeft: "2vh", }}>Remember me</span>
             </div>
             <div className="forget_div">
-            <Link to="/forgot-password">Forgot Password?</Link>
+              <Link to="/forgot-password">Forgot Password?</Link>
             </div>
           </div>
           <br />

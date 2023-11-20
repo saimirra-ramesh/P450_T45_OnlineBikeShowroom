@@ -43,7 +43,7 @@ const Footer = () => {
                     <div className="col-md-4">
                         <h5>Contact Us</h5>
                         <p>
-                            <a href="https://maps.app.goo.gl/YQzeTtscPUgxQ4cG6" target="_blank"><FontAwesomeIcon icon={faMapMarker} /> VIT - Chennai, Tamil Nadu, India</a><br />
+                            <a href="https://maps.app.goo.gl/YQzeTtscPUgxQ4cG6" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faMapMarker} /> VIT - Chennai, Tamil Nadu, India</a><br />
                             <a href={`tel:${"+91 123-456-7890"}`}><FontAwesomeIcon icon={faPhone} /> +91 123-456-7890</a><br />
                             <a href={`mailto:${"info@bikeswale.com"}`}><FontAwesomeIcon icon={faEnvelope} /> info@bikeswale.com </a><br />
                         </p>
