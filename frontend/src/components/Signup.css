@@ -81,7 +81,8 @@
 
   
   .btnloginsignup input:hover {
-    background: #ca340a;
+    background: #030100;
+    transition: all 0.3s linear;
   }
 
   .sign_up {

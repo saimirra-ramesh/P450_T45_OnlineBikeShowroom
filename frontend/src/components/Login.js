@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faMotorcycle } from '@fortawesome/free-solid-svg-icons';
 import './Signup.css';
@@ -7,8 +7,12 @@ import './Signup.css';
 function Login() {
   const [formData, setFormData] = useState({
     userName: '',
-    password: '',
+    password: ''
   });
+
+const [errorMessage, setErrorMessage] = useState('');
+const [successMessage, setSuccessMessage] = useState('');
+const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,16 +37,23 @@ function Login() {
       },
       body: JSON.stringify(loginData),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Handle the response from the server
-        // Redirect or show a message based on the server response
-      })
-      .catch((error) => {
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.success) {
+            setErrorMessage('');
+            setSuccessMessage(data.message);
+            navigate('/');
+        } else {
+            setSuccessMessage('');
+            setErrorMessage(data.message || 'An error occurred during login.');
+        }
+    })
+    .catch((error) => {
         console.error('Error:', error);
-        // Handle error (e.g., show an error message to the user)
-      });
-  };
+        setErrorMessage('An error occurred during login.');
+    });
+};
+
   return (
 
     <div>
@@ -89,13 +100,14 @@ function Login() {
             <input type="submit" value="Login" />
           </div>
           <br />
+          <div className="error_message">{errorMessage}</div>
           <div className="option_div">
             <div className="check_box">
               <input type="checkbox" />
               <span style={{ marginLeft: "2vh", }}>Remember me</span>
             </div>
             <div className="forget_div">
-              <a href="#">Forgot Password?</a>
+            <Link to="/forgot-password">Forgot Password?</Link>
             </div>
           </div>
           <br />

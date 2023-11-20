@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faPhone, faLock, faMapMarker, faMotorcycle } from "@fortawesome/free-solid-svg-icons";
 import './Signup.css';
@@ -15,7 +15,12 @@ function Signup() {
     password: '',
     confirmPassword: '',
     address: '',
+    tokens: []
   });
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +32,15 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.phoneNumber.length !== 10) {
+      setErrorMessage('Phone number must be a 10-digit number.');
+      return;
+    }
 
-    // Validate the form data (you can add more validation here)
+    if (formData.password !== formData.confirmPassword) {
+      setErrorMessage('Passwords do not match.');
+      return;
+    }
 
     const signupData = {
       firstName: formData.firstName,
@@ -41,25 +53,56 @@ function Signup() {
     };
 
     console.log('Signup Data:', signupData);
-
+    
     // Send a POST request to your backend
-    fetch('http://localhost:5555/auth/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(signupData),
+   // Send a POST request to your backend
+   fetch('http://localhost:5555/auth/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(signupData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Server Response:', data);
+
+      if (data.success) {
+        // Clear the form fields upon successful signup
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phoneNumber: '',
+          userName: '',
+          password: '',
+          confirmPassword: '',
+          address: '',
+          tokens: []
+        });
+        
+        setErrorMessage('');
+        setSuccessMessage(data.message);
+
+        setTimeout(() => {
+          navigate('/');
+        }, 0); 
+      } 
+      
+      else {
+        // Display error message from the server
+        setSuccessMessage('');
+        setErrorMessage(data.error);
+      }
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Handle the response from the server
-        // Redirect to login page or show a success message to the user
-      })
-      .catch((error) => {
-        console.log( error);
-        // Handle error (e.g., show an error message to the user)
-      });
-  };
+
+    .catch((error) => {
+      console.error('Error:', error);
+      // Display a generic error message
+      setSuccessMessage('');
+      setErrorMessage('An error occurred during signup.');
+    });
+};
 
   return (
     <div>
@@ -138,7 +181,10 @@ function Signup() {
           </div>
 
           <div className="input_box">
-            <input type="password" placeholder="  Re-enter Password" required />
+            <input type="password" placeholder="  Re-enter Password" required 
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            name="confirmPassword"/>
             <div className="icon">
               <FontAwesomeIcon icon={faLock} />
             </div>
@@ -158,6 +204,7 @@ function Signup() {
             <input type="submit" value="Sign Up" />
           </div>
           <br />
+          <div className="error_message">{errorMessage}</div>
           <div className="sign_up">
             <Link className="nav-link" to="/login" id="login">
               Login Page!
