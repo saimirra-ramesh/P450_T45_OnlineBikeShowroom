@@ -1,8 +1,8 @@
 .compare-page-container {
     display: flex;
     flex-direction: column;
-    margin-right: 1%;
-    margin-left: 1%;
+    margin-right: 5%;
+    margin-left: 5%;
     margin-top: 3%;
   }
   
@@ -14,22 +14,24 @@
   
   .compare-table td:first-child {
     text-align: left;
-    background-color: rgb(240,242,242);
   }
-  
-  .compare-table td {
-    border-top: 1px solid rgb(187,191,191);
-    border-bottom: 1px solid rgb(187,191,191);
-    border-left: none;
-    border-right: none;
-    height: 50px;
-    padding-left: 1%;
-  }
+
+.compare-table td {
+  border-top: 1px solid rgb(187,191,191);
+  border-bottom: 1px solid rgb(187,191,191);
+  border-left: none;
+  border-right: none;
+  height: 50px;
+  padding-left: 1%;
+}
   
   .compare-table th,
   .compare-table td {
     text-align: left;
     padding-left: 1%;
+  }
+  .compare-table th {
+    text-align: right;
   }
   
   .compare-page-container button {
@@ -53,11 +55,24 @@
     margin-top: 10px;
   }
   .image-container {
-    height: 250px;
+    height: 220px;
   }
-  
+  .compare-table tr:nth-child(even) {
+    background-color: rgb(240,242,242);
+  }
+
   .image-container img {
     height: 100%;
     width: auto;
     object-fit: cover;
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align items in the middle */
+    height: 100%; /* Take up full height of the cell */
+  }
+  
+  .compare-table th {
+    text-align: left;
   }

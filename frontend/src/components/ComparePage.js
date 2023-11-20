@@ -28,9 +28,10 @@ return (
                         <th>Features</th>
                         {comparedProducts.map((product) => (
                             <th key={product._id}>
-                                <Link to={`/products/${product._id}`}>{product.name}</Link>
-                                
-                                <button onClick={() => handleDelete(product._id)}>Delete</button>
+                               <div className="header-content">
+                                     <Link to={`/products/${product._id}`}>{product.name}</Link>
+                                    <button onClick={() => handleDelete(product._id)}>Delete</button>
+                                 </div>
                             </th>
                         ))}
                     </tr>
