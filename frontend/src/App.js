@@ -16,6 +16,7 @@ import Footer from './components/Footer.js';
 import SearchResultPage from './components/SearchResultPage.js';
 import Cart from './components/Cart.js';
 import { AuthProvider } from './components/AuthContext';
+import ComparePage from './components/ComparePage.js';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <Route path="/add-bike" element={<AddBike />} />
             <Route path="/products/:productId" element={<ProductView />} />
             <Route path="/products/:productId/update" element={<ProductUpdate />} />
+            <Route path="/compare" element={<ComparePage />} />
             <Route path="/search-results" element={<SearchResultPage />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>

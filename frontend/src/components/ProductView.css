@@ -9,6 +9,7 @@
 .product-view-container table {
   width: 100%; /* make the table expand to the full width of its container */
   border-collapse: collapse; /* collapse borders into a single border */
+  table-layout: fixed;
 
 }
 

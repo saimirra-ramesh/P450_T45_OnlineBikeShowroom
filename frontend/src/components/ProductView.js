@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import RatingStars from './RatingStars';
 import axios from 'axios';
 import './ProductView.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Nav from './Nav.js';
 import { useCart } from './CartContext';
 
@@ -10,6 +10,7 @@ const ProductView = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const { addToCart } = useCart();
+  const navigate = useNavigate(); // Replace useHistory with useNavigate
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -39,6 +40,18 @@ const ProductView = () => {
 
   const handleCompare = () => {
     console.log('Product added for comparison:', product);
+
+    const comparedProducts = JSON.parse(localStorage.getItem('comparedProducts')) || [];
+
+    if (comparedProducts.length < 3 && !comparedProducts.some((comparedProduct) => comparedProduct._id === product._id)) {
+      const updatedComparedProducts = [...comparedProducts, product];
+      localStorage.setItem('comparedProducts', JSON.stringify(updatedComparedProducts));
+
+      // Use navigate instead of history.push
+      navigate('/compare');
+    } else {
+      console.log('Maximum of 3 products allowed for comparison.');
+    }
   };
 
   return (
