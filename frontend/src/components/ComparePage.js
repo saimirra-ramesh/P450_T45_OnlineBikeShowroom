@@ -29,7 +29,7 @@ return (
                         {comparedProducts.map((product) => (
                             <th key={product._id}>
                                <div className="header-content">
-                                     <Link to={`/products/${product._id}`}>{product.name}</Link>
+                                     <Link to={`/products/${product._id}`} style={{ color: "#000000" }}>{product.name}</Link>
                                     <button onClick={() => handleDelete(product._id)}>Delete</button>
                                  </div>
                             </th>
