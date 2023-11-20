@@ -30,7 +30,7 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = async (itemId) => {
     try {
       // Perform API call to remove item from the server
-      await fetch(`http://localhost:5555/cart/${itemId}`, { method: 'DELETE' });
+      await fetch(`http://localhost:5555/cart/remove/${itemId}`, { method: 'DELETE' });
       // Update state to remove item from the local cartItems
       setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
     } catch (error) {

@@ -1,7 +1,7 @@
 const express = require("express");
 const cartRoute = express.Router();
 const mongoose = require("mongoose");
-const authenticateUser = require("..middleware/authenticate");
+const authenticateUser = require("../middleware/authenticate");
 
 const cartItemSchema = require("../models/cartItems");
 const cartDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Cart?retryWrites=true&w=majority");
