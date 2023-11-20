@@ -8,10 +8,17 @@ const userSchema = new mongoose.Schema({
     userName: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     address: { type: String, required: true },
+    tokens: [
+        {
+            token: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 }, {
-    collection:'Users'
+    collection: 'Users'
 });
-
 
 // Export schema
 module.exports = userSchema;

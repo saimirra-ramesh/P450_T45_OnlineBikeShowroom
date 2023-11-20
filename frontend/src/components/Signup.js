@@ -15,6 +15,7 @@ function Signup() {
     password: '',
     confirmPassword: '',
     address: '',
+    tokens: []
   });
 
   const handleChange = (e) => {
