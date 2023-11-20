@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 const userSchema = require("../models/userSchema");
 const usersDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Users?retryWrites=true&w=majority");
@@ -35,13 +36,17 @@ router.post('/login', async (req, res) => {
         }
 
         if (password === user.password) {
-            res.json({ success: true, message: 'Login successful' });
+            const token = jwt.sign({ userId: user._id }, 'your-secret-key'); // Create a token
+
+             // Save the token to the user model
+             user.tokens = user.tokens.concat({ token });
+             await user.save();
+             
+            return res.json({ success: true, message: 'Login successful', token });
         } 
         else {
             return res.status(401).json({ success: false, message: 'Invalid password' });
         }
-        
-        res.json({ success: true, message: 'Login successful' });
     } catch (error) {
         console.error('Error during login:', error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });

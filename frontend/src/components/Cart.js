@@ -1,77 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import CartItem from './CartItem';
 
 const Cart = () => {
+
   const [cartItems, setCartItems] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
-    // Fetch cart items from session storage
-    const storedItems = sessionStorage.getItem('cartItems');
-    if (storedItems) {
-      setCartItems(JSON.parse(storedItems));
-    }
-  }, []);
-
-  useEffect(() => {
-    // Calculate total amount whenever cart items change
-    const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    setTotalAmount(total);
-  }, [cartItems]);
-
-  const handleQuantityChange = (productId, newQuantity) => {
-    // Update quantity for the specified product in the cart
-    const updatedCartItems = cartItems.map(item => {
-      if (item.productId === productId) {
-        return { ...item, quantity: newQuantity };
+    // Fetch cart items from the server when the component mounts
+    const fetchCartItems = async () => {
+      try {
+        const response = await fetch('http://localhost:5555/cart');
+        const data = await response.json();
+        setCartItems(data);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
       }
-      return item;
-    });
+    };
 
-    setCartItems(updatedCartItems);
-    // Update session storage with the new cart items
-    sessionStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-  };
+    fetchCartItems();
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
 
-  const renderCartItems = () => {
-    if (cartItems.length === 0) {
-      return <p>Your cart is empty.</p>;
+  const removeFromCart = async (itemId) => {
+    try {
+      // Perform API call to remove item from the server
+      await fetch(`http://localhost:5555/cart/${itemId}`, { method: 'DELETE' });
+      // Update state to remove item from the local cartItems
+      setCartItems((prevItems) => prevItems.filter(item => item._id !== itemId));
+    } catch (error) {
+      console.error('Error removing item from cart:', error);
     }
-
-    return (
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-        <thead>
-          <tr style={{ borderBottom: '1px solid #ddd' }}>
-            <th style={{ padding: '10px' }}>Product ID</th>
-            <th style={{ padding: '10px' }}>Name</th>
-            <th style={{ padding: '10px' }}>Price</th>
-            <th style={{ padding: '10px' }}>Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cartItems.map(item => (
-            <tr key={item.productId}>
-              <td style={{ padding: '10px' }}>{item.productId}</td>
-              <td style={{ padding: '10px' }}>{item.name}</td>
-              <td style={{ padding: '10px' }}>${item.price}</td>
-              <td style={{ padding: '10px' }}>
-                <input
-                  type="number"
-                  value={item.quantity}
-                  onChange={(e) => handleQuantityChange(item.productId, parseInt(e.target.value, 10))}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
   };
 
   return (
     <div>
-      <h2>Your Cart</h2>
-      {renderCartItems()}
-      <p>Total Amount to be Paid: ${totalAmount}</p>
+      <h2>Shopping Cart</h2>
+      {cartItems.map(item => (
+        <CartItem key={item._id} item={item} removeFromCart={removeFromCart} />
+      ))}
     </div>
   );
 };

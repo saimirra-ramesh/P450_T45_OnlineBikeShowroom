@@ -42,7 +42,7 @@ const ProductUpdate = ({ match }) => {
   
   const handleUpdate = async () => {
     try {
-      const response = await axios.put(`http://localhost:5555/products/${productId}/update`, updateFields);
+      await axios.put(`http://localhost:5555/products/${productId}/update`, updateFields);
       console.log('Product Updated successfully');
       setStatus('Product updated successfully');
     } catch (error) {
