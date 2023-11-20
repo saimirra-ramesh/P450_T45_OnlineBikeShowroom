@@ -43,9 +43,9 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Server response:', data);
+        // console.log('Server response:', data);
         if (data.success) {
-          console.log('Login successful. Token:', data.token);
+          // console.log('Login successful. Token:', data.token);
           setErrorMessage('');
           setSuccessMessage(data.message);
           setIsLoggedIn(true);
