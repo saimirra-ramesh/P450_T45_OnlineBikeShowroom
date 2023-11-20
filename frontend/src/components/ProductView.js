@@ -4,10 +4,12 @@ import axios from 'axios';
 import './ProductView.css';
 import { useParams } from 'react-router-dom';
 import Nav from './Nav.js';
+import { useCart } from './CartContext';
 
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -22,28 +24,19 @@ const ProductView = () => {
     fetchProduct();
   }, [productId]);
 
-
-  console.log('Product prop:');
-
   if (!product) {
     return <div>Product Undefined</div>;
   }
 
   const handleAddToCart = () => {
-    sessionStorage.setItem('selectedProductId', productId);
+    addToCart({
+      productId: productId,
+      quantity: 1,
+      product: product,
+    });
     console.log('Product added to cart:', product);
   };
 
-  const handleRemoveFromCart = () => {
-    const selectedProductId = sessionStorage.getItem('selectedProductId');
-
-    if (selectedProductId === productId) {
-      sessionStorage.removeItem('selectedProductId');
-      console.log('Product removed from cart:', productId);
-    } else {
-      console.log('No product selected in the cart.');
-    }
-  };
   const handleCompare = () => {
     console.log('Product added for comparison:', product);
   };
@@ -81,11 +74,7 @@ const ProductView = () => {
             </div>
 
             <div className="action-buttons">
-              
-                <button className="remove-from-cart-btn" onClick={handleRemoveFromCart}>
-                  Remove from Cart
-                </button>
-              
+                         
                 <button className="add-to-cart-btn" onClick={handleAddToCart}>
                   Add to Cart
                 </button>
