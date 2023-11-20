@@ -7,7 +7,7 @@ import './Signup.css';
 
 
 function Login() {
-  const { setIsLoggedIn } = useAuth();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     userName: '',
     password: ''
@@ -48,7 +48,7 @@ function Login() {
           // console.log('Login successful. Token:', data.token);
           setErrorMessage('');
           setSuccessMessage(data.message);
-          setIsLoggedIn(true);
+          login(data.token);
           navigate('/');
         } else {
           setSuccessMessage('');

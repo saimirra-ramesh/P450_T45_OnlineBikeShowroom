@@ -9,7 +9,7 @@ import { useAuth } from './AuthContext.js';
 function Nav() {
 
   const { isLoggedIn, setIsLoggedIn } = useAuth();
-  console.log("Logged in?: ", isLoggedIn);
+  // console.log("Logged in?: ", isLoggedIn);
 
   const handleSearch = (query) => {
     console.log('Nav.js, Searching for:', query);
@@ -33,11 +33,11 @@ function Nav() {
           </Link>
         </div>
 
-        <div className="col-6 text-center">
+        <div className="col-5 text-center">
           <SearchBar onSearch={handleSearch} />
         </div>
 
-        <div className="col-3 text-center">
+        <div className="col-4 text-center">
           {isLoggedIn ? (
             <>
               <Link className="nav-link" to="/cart">
