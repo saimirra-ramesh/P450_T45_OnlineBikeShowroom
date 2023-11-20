@@ -151,6 +151,7 @@ function SecondNav() {
                             className="btn"
                             type="button"
                             id="MenuButton"
+                            onClick={() => { window.location.href = '#/compare'; }}
                         >
                             Compare
                         </button>

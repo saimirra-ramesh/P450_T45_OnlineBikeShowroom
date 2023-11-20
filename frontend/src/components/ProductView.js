@@ -48,7 +48,6 @@ const ProductView = () => {
       localStorage.setItem('comparedProducts', JSON.stringify(updatedComparedProducts));
 
       // Use navigate instead of history.push
-      navigate('/compare');
     } else {
       console.log('Maximum of 3 products allowed for comparison.');
     }

@@ -1,0 +1,63 @@
+.compare-page-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-top: 3%;
+  }
+  
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  
+  .compare-table td:first-child {
+    text-align: left;
+    background-color: rgb(240,242,242);
+  }
+  
+  .compare-table td {
+    border-top: 1px solid rgb(187,191,191);
+    border-bottom: 1px solid rgb(187,191,191);
+    border-left: none;
+    border-right: none;
+    height: 50px;
+    padding-left: 1%;
+  }
+  
+  .compare-table th,
+  .compare-table td {
+    text-align: left;
+    padding-left: 1%;
+  }
+  
+  .compare-page-container button {
+    max-width: 150px;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .compare-page-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .compare-page-container .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .image-container {
+    height: 250px;
+  }
+  
+  .image-container img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+  }
