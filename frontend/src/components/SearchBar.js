@@ -20,7 +20,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
 
-    <form className="input-group" onSubmit={handleSearch}>
+    <form className="input-group" onSubmit={handleSearch} id="nav-search-bar">
       <input type="text" className="form-control" placeholder="Search" value={query} onChange={handleInputChange} />
        <button className="btn" type="submit" id="search">
         <FontAwesomeIcon icon={faMagnifyingGlass} />
