@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import RatingStars from './RatingStars';
 import axios from 'axios';
 import './ProductView.css';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Nav from './Nav.js';
 import { useCart } from './CartContext';
 
@@ -10,7 +10,6 @@ const ProductView = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const { addToCart } = useCart();
-  const navigate = useNavigate(); // Replace useHistory with useNavigate
 
   useEffect(() => {
     const fetchProduct = async () => {
