@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import CartItem from './CartItem';
+import Nav from './Nav.js';
 import { useCart } from './CartContext';
 import { fetchCartItems, removeFromCart } from './CartApi';
+// import { useAuth } from './AuthContext.js';
 
 const Cart = () => {
 
   const { cartItems, setCartItems } = useCart();
 
   useEffect(() => {
+    
     const fetchItems = async () => {
       try {
         const items = await fetchCartItems();
@@ -31,6 +34,7 @@ const Cart = () => {
 
   return (
     <div>
+      <Nav />
       <h2>Shopping Cart</h2>
       {cartItems.map((item) => (
         <CartItem key={item._id} item={item} removeFromCart={handleRemoveFromCart} />

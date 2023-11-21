@@ -85,9 +85,24 @@
     color: grey;
 }
 
-#login:hover{
+#login,
+#logout,
+#cart{
+    margin: auto;
+    padding: auto;
+}
+
+#login:hover,
+#logout:hover,
+#cart:hover
+{
     color: white;
 } 
+
+#nav-search-bar{
+    margin: auto;
+    padding: 0%;
+}
 
 #search{
     border-radius: 0%;

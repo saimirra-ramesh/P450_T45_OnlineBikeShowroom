@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './ComparePage.css';
 import RatingStars from './RatingStars';
+import Nav from './Nav';
 
 const ComparePage = () => {
     // Read compared products from local storage
@@ -18,6 +19,8 @@ const ComparePage = () => {
     };
 return (
     
+    <div>
+        <Nav />
     <div className="compare-page-container">
         <h1 style={{ color: "#000000" }}>Compare Products</h1>
 
@@ -125,6 +128,7 @@ return (
         ) : (
             <p>No products selected for comparison.</p>
         )}
+    </div>
     </div>
 );
 };
