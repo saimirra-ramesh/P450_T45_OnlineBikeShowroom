@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Nav from './Nav.js';
 import '../adminStyles.css'; 
+import { toast } from 'react-toastify';
 
 const AddBike = () => {
   const [status, setStatus] = useState('');
@@ -37,6 +38,7 @@ const AddBike = () => {
       // Make an API call to add a new bike using the formData
       const response = await axios.post('http://localhost:5555/products/add-bike', formData);
       setStatus('Product added successfully');
+      toast.success('Product added successfully!');
       // Redirect to the dashboard after successful submission
       console.log('Product added successfully:', response.data);
     } catch (error) {
@@ -45,8 +47,9 @@ const AddBike = () => {
   };
 
   return (
-    <div className="center-content">
+    <div>
       <Nav />
+    <div className="center-content">
       <h2>Add Bike</h2>
       
       <form className="add-bike-form" onSubmit={handleSubmit}>
@@ -173,6 +176,7 @@ const AddBike = () => {
       <p style={{ color: 'red' }}>{status}</p>
       <Link to="/admin" style={{color:'black'}}>Go Back to Dashboard</Link>
       <p></p>
+    </div>
     </div>
   );
 };

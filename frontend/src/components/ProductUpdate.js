@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import Nav from './Nav.js';
+import { toast } from 'react-toastify';
 
 const ProductUpdate = ({ match }) => {
   const { productId } = useParams();
@@ -17,6 +18,7 @@ const ProductUpdate = ({ match }) => {
         setProduct(response.data);
       } catch (error) {
         console.error('Error fetching product:', error);
+        toast.error('Error fetching product');
       }
     };
 
@@ -45,6 +47,7 @@ const ProductUpdate = ({ match }) => {
       await axios.put(`http://localhost:5555/products/${productId}/update`, updateFields);
       console.log('Product Updated successfully');
       setStatus('Product updated successfully');
+      toast.success('Product updated successfully!');
     } catch (error) {
       console.error('Error updating product:', error);
       setStatus('Error updating product');

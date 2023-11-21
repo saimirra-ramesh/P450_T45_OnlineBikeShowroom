@@ -17,14 +17,25 @@ import SearchResultPage from './components/SearchResultPage.js';
 import Cart from './components/Cart.js';
 import { AuthProvider } from './components/AuthContext';
 import ComparePage from './components/ComparePage.js';
-
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <AuthProvider>
       <div className='App'>
         <HashRouter>
-
+        <ToastContainer
+position="bottom-left"
+autoClose={2000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover={false}
+theme="colored"
+/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
