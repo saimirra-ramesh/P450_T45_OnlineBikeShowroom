@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const userSchema = require('../models/userSchema');
-const User = mongoose.model('User', userSchema);
+const usersDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Users?retryWrites=true&w=majority");
+const User = usersDbUrl.model("User", userSchema);
 
 const authenticateUser = async (req, res, next) => {
   try {
