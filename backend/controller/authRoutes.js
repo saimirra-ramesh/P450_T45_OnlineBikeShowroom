@@ -6,6 +6,12 @@ const userSchema = require("../models/userSchema");
 const usersDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Users?retryWrites=true&w=majority");
 const User = usersDbUrl.model("User", userSchema);
 
+usersDbUrl.on('error', console.error.bind(console, 'MongoDB connection error:'));
+usersDbUrl.once('open', () => {
+  console.log('Connected to MongoDB Users DB');
+});
+
+
 // Signup route
 router.post('/signup', async (req, res) => {
     try {

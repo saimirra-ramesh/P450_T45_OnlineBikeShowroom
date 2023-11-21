@@ -7,6 +7,12 @@ const cartItemSchema = require("../models/cartItems");
 const cartDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Cart?retryWrites=true&w=majority");
 const Cart = cartDbUrl.model("Cart", cartItemSchema);
 
+cartDbUrl.on('error', console.error.bind(console, 'MongoDB connection error:'));
+cartDbUrl.once('open', () => {
+  console.log('Connected to MongoDB Cart DB');
+});
+
+
 // Get all cart items
 cartRoute.get("/", async (req, res) => {
   try {
@@ -35,7 +41,7 @@ cartRoute.post("/add", authenticateUser, async (req, res) => {
 });
 
 // Remove item from the cart
-cartRoute.delete("/remove/:itemId", async (req, res) => {
+cartRoute.delete("/remove/:itemId", authenticateUser, async (req, res) => {
   const itemId = req.params.itemId;
   const userId = req.user._id; // Assuming you have middleware to authenticate users
 

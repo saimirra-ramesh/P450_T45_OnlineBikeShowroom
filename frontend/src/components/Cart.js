@@ -3,14 +3,15 @@ import CartItem from './CartItem';
 import Nav from './Nav.js';
 import { useCart } from './CartContext';
 import { fetchCartItems, removeFromCart } from './CartApi';
-// import { useAuth } from './AuthContext.js';
+import { useAuth } from './AuthContext.js';
 
 const Cart = () => {
 
   const { cartItems, setCartItems } = useCart();
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
-    
+
     const fetchItems = async () => {
       try {
         const items = await fetchCartItems();
@@ -31,6 +32,15 @@ const Cart = () => {
       console.error('Error removing item from cart:', error);
     }
   };
+
+  if (!isLoggedIn) {
+    return (
+      <div>
+        <Nav />
+        <h4 style={{padding: "25px"}}>Please log in to access the cart.</h4>
+      </div>
+    );
+  }
 
   return (
     <div>

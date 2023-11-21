@@ -6,6 +6,11 @@ const bikeDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cl
 const Product = bikeDbUrl.model("bike", bikeSchema);
 
 
+bikeDbUrl.on('error', console.error.bind(console, 'MongoDB connection error:'));
+bikeDbUrl.once('open', () => {
+  console.log('Connected to MongoDB Bike DB');
+});
+
 // Get all products
 prodRoute.get("/", async (req, res) => {
   try {

@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
         {
             token: {
                 type: String,
+                index: true, //Added by Radhika on 21st
                 required: true
             }
         }

@@ -1,12 +1,19 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userSchema');
+const userSchema = require('../models/userSchema');
+const User = mongoose.model('User', userSchema);
 
 const authenticateUser = async (req, res, next) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '');
-    const decoded = jwt.verify(token, 'your-secret-key');
+    console.log('Token in Middleware:', token);
 
-    const user = await User.findOne({ _id: decoded.userId, 'tokens.token': token });
+    const decoded = jwt.verify(token, 'your-secret-key');
+    console.log('Decoded:', decoded);
+
+    const user = await User.findById(decoded.userId);
+    console.log('User:', user);
+
+    // console.log('Token Expiry:', new Date(decoded.exp * 1000));
 
     if (!user) {
       throw new Error();
@@ -16,6 +23,7 @@ const authenticateUser = async (req, res, next) => {
     req.token = token;
     next();
   } catch (error) {
+    console.error('Token verification error:', error);
     res.status(401).json({ error: 'Please authenticate.' });
   }
 };

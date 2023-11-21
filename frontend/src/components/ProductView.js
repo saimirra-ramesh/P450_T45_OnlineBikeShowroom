@@ -4,12 +4,14 @@ import axios from 'axios';
 import './ProductView.css';
 import { useParams } from 'react-router-dom';
 import Nav from './Nav.js';
-import { useCart } from './CartContext';
+import { CartProvider, useCart } from './CartContext';
+import { useAuth } from './AuthContext.js';
 
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const { addToCart } = useCart();
+  const { authToken } = useAuth();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -33,6 +35,7 @@ const ProductView = () => {
       productId: productId,
       quantity: 1,
       product: product,
+      authToken: authToken,
     });
     console.log('Product added to cart:', product);
   };
@@ -46,7 +49,6 @@ const ProductView = () => {
       const updatedComparedProducts = [...comparedProducts, product];
       localStorage.setItem('comparedProducts', JSON.stringify(updatedComparedProducts));
 
-      // Use navigate instead of history.push
     } else {
       console.log('Maximum of 3 products allowed for comparison.');
     }
@@ -55,6 +57,8 @@ const ProductView = () => {
   return (
     <div>
       <Nav />
+
+      {/* <CartProvider authToken={authToken} /> */}
 
       <div className="product-view-container">
 
@@ -85,11 +89,11 @@ const ProductView = () => {
             </div>
 
             <div className="action-buttons">
-                         
-                <button className="add-to-cart-btn" onClick={handleAddToCart}>
-                  Add to Cart
-                </button>
-              
+
+              <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                Add to Cart
+              </button>
+
               <button className="compare-btn" onClick={handleCompare}>Compare</button>
             </div>
 

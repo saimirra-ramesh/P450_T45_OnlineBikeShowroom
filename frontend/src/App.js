@@ -15,13 +15,14 @@ import ProductUpdate from './components/ProductUpdate.js';
 import Footer from './components/Footer.js';
 import SearchResultPage from './components/SearchResultPage.js';
 import Cart from './components/Cart.js';
-import { AuthProvider } from './components/AuthContext';
+import { AuthProvider } from './components/AuthContext.js';
 import ComparePage from './components/ComparePage.js';
 
 
 function App() {
   return (
     <AuthProvider>
+
       <div className='App'>
         <HashRouter>
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/compare" element={<ComparePage />} />
             <Route path="/search-results" element={<SearchResultPage />} />
             <Route path="/cart" element={<Cart />} />
+
           </Routes>
 
           <Footer />

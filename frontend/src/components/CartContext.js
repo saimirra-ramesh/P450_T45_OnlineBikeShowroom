@@ -4,14 +4,17 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-
+    
   const addToCart = async (item) => {
     try {
+      const { authToken } = item;
+      // console.log('Token in CartContext:', authToken);
       // Perform API call to add item to the server
       const response = await fetch('http://localhost:5555/cart/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`,
         },
         body: JSON.stringify(item),
       });
