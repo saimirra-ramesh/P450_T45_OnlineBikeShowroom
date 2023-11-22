@@ -5,6 +5,13 @@ const bikeSchema = require("../models/productSchema");
 const bikeDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/bike?retryWrites=true&w=majority");
 const Product = bikeDbUrl.model("bike", bikeSchema);
 
+// NEW
+const Bike = bikeDbUrl.model("bike", bikeSchema);
+const Scooter = bikeDbUrl.model("scooters", bikeSchema);
+const Superbikes = bikeDbUrl.model("superbikes", bikeSchema);
+const UsedBikes = bikeDbUrl.model("usedbikes", bikeSchema);
+// NEW
+
 
 // Get all products
 prodRoute.get("/", async (req, res) => {
@@ -17,6 +24,43 @@ prodRoute.get("/", async (req, res) => {
   }
 });
  
+// NEW
+// Fetch data for a specific category
+prodRoute.get("/category/:category", async (req, res) => {
+  const category = req.params.category;
+  try {
+
+    // Use a switch case to determine the model based on the category
+    let model;
+    switch (category) {
+      case "bike":
+        model = Bike;
+        break;
+      case "scooters":
+        model = Scooter;
+        break;
+      case "superbikes":
+        model = Superbikes;
+        break;
+        case "usedbikes":
+          model = UsedBikes;
+          break;
+      default:
+        res.status(400).json({ error: "Invalid category" });
+        return;
+    }
+
+    const products = await model.find();
+    console.log(`Fetched ${category} products:`, products);
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error(`Error fetching ${category} products:`, error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+
+});
+// NEW
 
 // Search for a product using the search bar
 prodRoute.get('/search', async (req, res) => {
@@ -87,9 +131,11 @@ prodRoute.get("/:productId", async (req, res) => {
   }
 });
 
-// Add a new product
+// NEW
+
+// Add a new bike
 prodRoute.post("/add-bike", async (req, res) => {
-  const newProduct = new Product(req.body);
+  const newProduct = new Bike(req.body);
 
   try {
     const savedProduct = await newProduct.save();
@@ -99,6 +145,60 @@ prodRoute.post("/add-bike", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+// Add a new scooter
+prodRoute.post("/add-scooters", async (req, res) => {
+  const newProduct = new Scooter(req.body);
+
+  try {
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error("Error adding product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Add a new superbike
+prodRoute.post("/add-superbikes", async (req, res) => {
+  const newProduct = new Superbikes(req.body);
+
+  try {
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error("Error adding product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Add a new usedbike 
+prodRoute.post("/add-usedbikes", async (req, res) => {
+  const newProduct = new UsedBikes(req.body);
+
+  try {
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error("Error adding product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// // Add a new product
+// prodRoute.post("/add-bike", async (req, res) => {
+//   const newProduct = new Product(req.body);
+
+//   try {
+//     const savedProduct = await newProduct.save();
+//     res.status(201).json(savedProduct);
+//   } catch (error) {
+//     console.error("Error adding product:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
+// NEW
 
 // Update a product by ID
 prodRoute.put("/:productId/update", async (req, res) => {
