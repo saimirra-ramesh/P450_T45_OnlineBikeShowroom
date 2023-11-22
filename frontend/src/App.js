@@ -17,15 +17,28 @@ import SearchResultPage from './components/SearchResultPage.js';
 import Cart from './components/Cart.js';
 import { AuthProvider } from './components/AuthContext.js';
 import ComparePage from './components/ComparePage.js';
-
+import { ToastContainer } from 'react-toastify';
+import { CartProvider } from './components/CartContext';
 
 function App() {
   return (
     <AuthProvider>
-
+      
       <div className='App'>
         <HashRouter>
-
+        <ToastContainer
+          position="bottom-left"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+          theme="colored"
+          />
+          <CartProvider>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -41,7 +54,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
 
           </Routes>
-
+          </CartProvider>
           <Footer />
         </HashRouter>
       </div>

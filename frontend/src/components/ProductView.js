@@ -4,14 +4,14 @@ import axios from 'axios';
 import './ProductView.css';
 import { useParams } from 'react-router-dom';
 import Nav from './Nav.js';
-import { CartProvider, useCart } from './CartContext';
-import { useAuth } from './AuthContext.js';
+import { useCart } from './CartContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const { addToCart } = useCart();
-  const { authToken } = useAuth();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -38,19 +38,24 @@ const ProductView = () => {
       authToken: authToken,
     });
     console.log('Product added to cart:', product);
+    toast.success('Product added to cart!');
   };
 
   const handleCompare = () => {
-    console.log('Product added for comparison:', product);
-
     const comparedProducts = JSON.parse(localStorage.getItem('comparedProducts')) || [];
 
-    if (comparedProducts.length < 3 && !comparedProducts.some((comparedProduct) => comparedProduct._id === product._id)) {
+    if (comparedProducts.some(comparedProduct => comparedProduct._id === product._id)) {
+      toast.error('Product is already added for comparison.');
+      return;
+    }
+
+    if (comparedProducts.length < 3) {
       const updatedComparedProducts = [...comparedProducts, product];
       localStorage.setItem('comparedProducts', JSON.stringify(updatedComparedProducts));
 
+      // Use navigate instead of history.push
     } else {
-      console.log('Maximum of 3 products allowed for comparison.');
+      toast.error('Maximum of 3 products allowed for comparison.');
     }
   };
 

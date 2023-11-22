@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchProducts, deleteProduct } from '../components/Product';
 import Nav from './Nav.js';
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
@@ -29,8 +30,10 @@ const Dashboard = () => {
         // Refresh the product list after deletion
         const updatedProducts = await fetchProducts();
         setProducts(updatedProducts);
+        toast.success('Product deleted successfully!');
       } catch (error) {
         console.error('Error deleting product:', error);
+        toast.error('Error deleting product');
       }
     }
   };

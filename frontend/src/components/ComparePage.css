@@ -32,10 +32,13 @@
   }
   .compare-table th {
     text-align: right;
+    color: #000; 
+    background-color: rgb(240,242,242);
+    border: none; 
   }
   
   .compare-page-container button {
-    max-width: 150px;
+    max-width: 100px;
     width: 100%;
     background-color: #007bff;
     color: #fff;
@@ -67,6 +70,7 @@
     object-fit: cover;
   }
   .header-content {
+    color: #000; 
     display: flex;
     justify-content: space-between;
     align-items: center; /* Vertically align items in the middle */
@@ -75,4 +79,5 @@
   
   .compare-table th {
     text-align: left;
+    background-color: rgb(240,242,242);
   }
