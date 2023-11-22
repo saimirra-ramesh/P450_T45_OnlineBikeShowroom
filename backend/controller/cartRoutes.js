@@ -3,10 +3,12 @@ const cartRoute = express.Router();
 const mongoose = require("mongoose");
 const authenticateUser = require("../middleware/authenticate");
 
+const productSchema = require("../models/productSchema"); // Import the product schema
 const cartItemSchema = require("../models/cartItems");
+
 const cartDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Cart?retryWrites=true&w=majority");
 const Cart = cartDbUrl.model("Cart", cartItemSchema);
-
+const Product = cartDbUrl.model("Product", productSchema); // Create the product model with the same connection
 // Get all cart items
 cartRoute.get("/", async (req, res) => {
   try {
