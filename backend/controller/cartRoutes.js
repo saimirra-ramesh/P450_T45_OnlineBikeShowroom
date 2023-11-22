@@ -3,19 +3,43 @@ const cartRoute = express.Router();
 const mongoose = require("mongoose");
 const authenticateUser = require("../middleware/authenticate");
 
-const productSchema = require("../models/productSchema"); // Import the product schema
-const cartItemSchema = require("../models/cartItems");
 
-const cartDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Cart?retryWrites=true&w=majority");
-const Cart = cartDbUrl.model("Cart", cartItemSchema);
-const Product = cartDbUrl.model("Product", productSchema); // Create the product model with the same connection
+// const cartItemSchema = require("../models/cartItems");
+// const cartDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Cart?retryWrites=true&w=majority");
+// const Cart = cartDbUrl.model("Cart", cartItemSchema);
+
+// // const productSchema = require("../models/productSchema"); // Import the product schema
+// // const productDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/bike?retryWrites=true&w=majority");
+// // const Product = productDbUrl.model("scooters", productSchema); // Create the product model with the same connection
+
+
+// const bikeSchema = require("../models/productSchema");
+// const bikeDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/bike?retryWrites=true&w=majority");
+// const Product = bikeDbUrl.model("scooters", bikeSchema);
+
+// Added rn
+const cartItemSchema = require("../models/cartItems.js");
+const productSchema = require("../models/productSchema.js");
+
+const dbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/");
+
+const CartDb = dbUrl.useDb('Cart');
+const Cart = CartDb.model("Cart", cartItemSchema);
+
+const bikeDb = dbUrl.useDb('bike');
+const Product = mongoose.model("scooters", productSchema);
+// Added rn -- end
+
 // Get all cart items
 cartRoute.get("/", async (req, res) => {
   try {
-    const cartItems = await Cart.find().populate('productId'); // Populate the 'productId' field with actual product details
+    // const cartItems = await Cart.find().populate('productId');  // Populate the 'productId' field with actual product details
+    
+    const cartItems = await Cart.find();
+    console.log("productId in cartRoutes.js: ", cartItems);
     res.status(200).json(cartItems);
   } catch (error) {
-    console.error("Error fetching cart items:", error);
+    console.error("cartRoutes.js, Error fetching cart items:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -24,6 +48,8 @@ cartRoute.get("/", async (req, res) => {
 cartRoute.post("/add", authenticateUser, async (req, res) => {
   const { productId, quantity } = req.body;
   const userId = req.user._id; 
+
+  // console.log("Token in cartRoutes.js: ", userId);
 
   try {
     const cartItem = new Cart({ productId, quantity, userId });

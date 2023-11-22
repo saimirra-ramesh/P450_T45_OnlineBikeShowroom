@@ -7,8 +7,9 @@ export const CartProvider = ({ children }) => {
     
   const addToCart = async (item) => {
     try {
+
       const { authToken } = item;
-      // console.log('Token in CartContext:', authToken);
+
       // Perform API call to add item to the server
       const response = await fetch('http://localhost:5555/cart/add', {
         method: 'POST',
@@ -18,6 +19,10 @@ export const CartProvider = ({ children }) => {
         },
         body: JSON.stringify(item),
       });
+
+      
+      console.log('Token in CartContext:', authToken);
+      console.log('Product Received: ', item.productId);
 
       if (response.ok) {
         // Update state to add item to the local cartItems
@@ -30,19 +35,21 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const removeFromCart = async (itemId) => {
-    try {
-      // Perform API call to remove item from the server
-      await fetch(`http://localhost:5555/cart/remove/${itemId}`, { method: 'DELETE' });
-      // Update state to remove item from the local cartItems
-      setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
-    } catch (error) {
-      console.error('Error removing item from cart:', error);
-    }
-  };
+  // const removeFromCart = async (itemId) => {
+  //   console.log('CartContext.js, itemId', itemId);
+  //   try {
+  //     // Perform API call to remove item from the server
+  //     await fetch(`http://localhost:5555/cart/remove/${itemId}`, { method: 'DELETE' });
+  //     // Update state to remove item from the local cartItems
+  //     setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
+  //   } catch (error) {
+  //     console.error('Error removing item from cart:', error);
+  //   }
+  // };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    // <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, setCartItems }}>
       {children}
     </CartContext.Provider>
   );

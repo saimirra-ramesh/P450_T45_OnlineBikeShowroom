@@ -5,9 +5,10 @@ const cors = require("cors"); //allow frontend to access backend
 const bodyParser = require("body-parser");
 const PORT = 5555;
 
+const cartRoutes = require('./controller/cartRoutes.js');
 const prodRoute = require("./controller/prodRoute.js");//route to get all products or specific ones
 const authRoutes = require('./controller/authRoutes.js');
-const cartRoutes = require('./controller/cartRoutes.js');
+
 
 const app = express();
 

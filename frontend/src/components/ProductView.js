@@ -7,11 +7,13 @@ import Nav from './Nav.js';
 import { useCart } from './CartContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from './AuthContext.js';
 
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const { addToCart } = useCart();
+  const { authToken } = useAuth();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -37,6 +39,7 @@ const ProductView = () => {
       product: product,
       authToken: authToken,
     });
+    console.log('Token sent to CartContext: ', authToken);
     console.log('Product added to cart:', product);
     toast.success('Product added to cart!');
   };

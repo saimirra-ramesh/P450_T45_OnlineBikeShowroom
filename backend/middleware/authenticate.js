@@ -9,10 +9,10 @@ const authenticateUser = async (req, res, next) => {
     console.log('Token in Middleware:', token);
 
     const decoded = jwt.verify(token, 'your-secret-key');
-    console.log('Decoded:', decoded);
+    console.log('Decoded in Middleware:', decoded);
 
     const user = await User.findById(decoded.userId);
-    console.log('User:', user);
+    console.log('User in Middleware:', user);
 
     // console.log('Token Expiry:', new Date(decoded.exp * 1000));
 

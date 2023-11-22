@@ -3,7 +3,7 @@ const prodRoute = new express.Router();
 
 const bikeSchema = require("../models/productSchema");
 const bikeDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/bike?retryWrites=true&w=majority");
-const Product = bikeDbUrl.model("bike", bikeSchema);
+const Product = bikeDbUrl.model("scooters", bikeSchema);
 
 
 bikeDbUrl.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -45,28 +45,6 @@ prodRoute.get('/search', async (req, res) => {
 });
 
 
-// Search for a product using the search bar
-prodRoute.get('/search', async (req, res) => {
-  try {
-    const { query } = req.query;
-    // console.log('Received search query:', query);
-
-    const results = await Product.find({
-      $text: { $search: query },
-    });
-
-    res.status(200).json(results);
-    // console.log("Search results: ", results);
-  }
-
-  catch (error) {
-    console.error("Error fetching product:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-
-});
-
-
 // Get a specific product by ID
 prodRoute.get("/:productId", async (req, res) => {
   try {
@@ -84,7 +62,7 @@ prodRoute.get("/:productId", async (req, res) => {
     }
 
     res.status(200).json(product);
-    console.log("Search results: ", product);
+    // console.log("Search results: ", product);
 
   } catch (error) {
     console.error("Error fetching product:", error);

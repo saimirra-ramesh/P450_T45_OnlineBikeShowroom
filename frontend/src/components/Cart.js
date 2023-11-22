@@ -16,6 +16,7 @@ const Cart = () => {
       try {
         const items = await fetchCartItems();
         setCartItems(items);
+        console.log('Cart.js, itemId, fetch: ', items);
       } catch (error) {
         console.error('Error fetching cart items:', error);
       }
@@ -26,6 +27,7 @@ const Cart = () => {
 
   const handleRemoveFromCart = async (itemId) => {
     try {
+      console.log('Cart.js, itemId, delete: ', itemId);
       await removeFromCart(itemId);
       setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
     } catch (error) {
