@@ -76,7 +76,8 @@ const Dashboard = () => {
           <option value="bike">Bike</option>
           <option value="scooters">Scooters</option>
           <option value="superbikes">Superbikes</option>
-          {/* <option value="usedbikes">Usedbikes</option> */}
+          <option value="superbikes">bikeAccessories</option>
+          
         </select>
 
         <p></p>
