@@ -4,6 +4,7 @@ import Nav from './Nav.js';
 import { useCart } from './CartContext';
 import { fetchCartItems, removeFromCart } from './CartApi';
 import { useAuth } from './AuthContext.js';
+import { toast } from 'react-toastify';
 
 const Cart = () => {
 
@@ -25,11 +26,29 @@ const Cart = () => {
     fetchItems();
   }, [setCartItems]);
 
-  const handleRemoveFromCart = async (itemId) => {
+  // const handleRemoveFromCart = async (itemId) => {
+  //   try {
+  //     console.log('Cart.js, itemId, delete: ', itemId);
+  //     await removeFromCart(itemId);
+  //     setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
+  //   } catch (error) {
+  //     console.error('Error removing item from cart:', error);
+  //   }
+  // };
+
+  const handleRemoveFromCart = async (itemData) => {
     try {
-      console.log('Cart.js, itemId, delete: ', itemId);
-      await removeFromCart(itemId);
-      setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
+      console.log('Cart.js, itemData, delete: ', itemData);
+      await removeFromCart(itemData);
+      setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemData.productId));
+
+      toast.success('Item removed successfully');
+
+    // Reload the page after a short delay (adjust as needed)
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+
     } catch (error) {
       console.error('Error removing item from cart:', error);
     }

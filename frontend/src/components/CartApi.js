@@ -23,10 +23,39 @@ export const addToCart = async (itemData) => {
   }
 };
 
-export const removeFromCart = async (itemId) => {
+// export const removeFromCart = async (itemId) => {
+//   try {
+//     console.log('CartApi.js, itemId, delete: ', itemId);
+//     await axios.delete(`${API_URL}/cart/remove/${itemId}`);
+//   } catch (error) {
+//     console.error('Error removing item from cart:', error);
+//     throw error;
+//   }
+// };
+
+
+// export const removeFromCart = async (itemData) => {
+//   try {
+//     console.log('CartApi.js, itemData, delete: ', itemData);
+//     await axios.delete(`${API_URL}/cart/remove`, { data: itemData });
+//   } catch (error) {
+//     console.error('Error removing item from cart:', error);
+//     throw error;
+//   }
+// };
+
+
+export const removeFromCart = async (itemData) => {
   try {
-    console.log('CartApi.js, itemId, delete: ', itemId);
-    await axios.delete(`${API_URL}/cart/remove/${itemId}`);
+    console.log('CartApi.js, itemData, delete: ', itemData);
+    const productId = itemData.productId;
+    const userId = itemData.userId;
+    
+    console.log('CartApi.js, userId, productId, delete: ', userId, productId);
+
+    await axios.delete(`${API_URL}/cart/${userId}/${productId}`);
+    // await axios.delete(`${API_URL}/cart/${productId}`, { data: itemData });
+
   } catch (error) {
     console.error('Error removing item from cart:', error);
     throw error;

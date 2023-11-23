@@ -36,7 +36,7 @@ cartRoute.get("/", async (req, res) => {
     // const cartItems = await Cart.find().populate('productId');  // Populate the 'productId' field with actual product details
     
     const cartItems = await Cart.find();
-    console.log("productId in cartRoutes.js: ", cartItems);
+    // console.log("productId in cartRoutes.js: ", cartItems);
     res.status(200).json(cartItems);
   } catch (error) {
     console.error("cartRoutes.js, Error fetching cart items:", error);
@@ -63,22 +63,94 @@ cartRoute.post("/add", authenticateUser, async (req, res) => {
 });
 
 // Remove item from the cart
-cartRoute.delete("/remove/:itemId", authenticateUser, async (req, res) => {
-  const itemId = req.params.itemId;
-  const userId = req.user._id; // Assuming you have middleware to authenticate users
+
+// cartRoute.delete("/remove/:itemId", authenticateUser, async (req, res) => {
+  
+//   const itemId = req.params.itemId;
+//   console.log("CartRoutes.js, productID, remove: ", itemId);
+
+//   const userId = req.user._id; // Assuming you have middleware to authenticate users
+
+//   try {
+//     const cartItem = await Cart.findOneAndDelete({ _id: itemId, userId });
+
+//     if (!cartItem) {
+//       return res.status(404).json({ error: "Item not found in the cart" });
+//     }
+
+//     res.status(200).json(cartItem);
+//   } catch (error) {
+//     console.error("Error removing item from cart:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
+
+// cartRoute.delete("/remove/:productId", async (req, res) => {
+  
+//   const {productId} = req.params;
+//   const { userId } = req.body;
+
+//   try {
+  
+//     const cartItem = await Cart.findOneAndDelete({ _id: productId, userId });
+
+//     console.log("CartRoutes.js, productID, remove: ", productId);
+//     console.log("CartRoutes.js, userID, remove: ", userId);
+
+//     if (!cartItem) {
+//       return res.status(404).json({ error: "Item not found in the cart" });
+//     }
+
+//     res.status(200).json(cartItem);
+
+    
+//   } catch (error) {
+//     console.error("Error removing item from cart:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
+
+// Delete a product by ID
+cartRoute.delete("/:userId/:productId", async (req, res) => {
+  const { userId, productId } = req.params;
+  console.log("CartRoutes.js, userId, productId, remove: ", userId, productId);
 
   try {
-    const cartItem = await Cart.findOneAndDelete({ _id: itemId, userId });
+    const deletedProduct = await Cart.findOneAndDelete({ userId, productId });
 
-    if (!cartItem) {
-      return res.status(404).json({ error: "Item not found in the cart" });
+    if (!deletedProduct) {
+      return res.status(404).json({ error: "Product not found" });
     }
 
-    res.status(200).json(cartItem);
+    res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
-    console.error("Error removing item from cart:", error);
+    console.error("Error deleting product:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+// cartRoute.delete("/remove", async (req, res) => {
+//   console.log("Received DELETE request:", req.body);
+  
+//   const { productId, quantity, userId } = req.body;
+  
+//   try {
+
+//     console.log("CartRoutes.js, productID, remove: ", productId);
+//     console.log("CartRoutes.js, userID, remove: ", userId);
+//     const cartItem = await Cart.findOneAndDelete({ _id: productId, userId });
+
+//     if (!cartItem) {
+//       return res.status(404).json({ error: "Item not found in the cart" });
+//     }
+
+//     res.status(200).json(cartItem);
+//   } catch (error) {
+//     console.error("Error removing item from cart:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 module.exports = cartRoute;
