@@ -52,7 +52,6 @@ function App() {
             <Route path="/compare" element={<ComparePage />} />
             <Route path="/search-results" element={<SearchResultPage />} />
             <Route path="/cart" element={<Cart />} />
-
           </Routes>
           </CartProvider>
           <Footer />
