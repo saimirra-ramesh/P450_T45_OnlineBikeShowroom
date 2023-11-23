@@ -20,10 +20,6 @@ export const CartProvider = ({ children }) => {
         body: JSON.stringify(item),
       });
 
-      
-      console.log('Token in CartContext:', authToken);
-      console.log('Product Received: ', item.productId);
-
       if (response.ok) {
         // Update state to add item to the local cartItems
         setCartItems((prevItems) => [...prevItems, item]);
@@ -35,20 +31,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // const removeFromCart = async (itemId) => {
-  //   console.log('CartContext.js, itemId', itemId);
-  //   try {
-  //     // Perform API call to remove item from the server
-  //     await fetch(`http://localhost:5555/cart/remove/${itemId}`, { method: 'DELETE' });
-  //     // Update state to remove item from the local cartItems
-  //     setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
-  //   } catch (error) {
-  //     console.error('Error removing item from cart:', error);
-  //   }
-  // };
-
   return (
-    // <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
     <CartContext.Provider value={{ cartItems, addToCart, setCartItems }}>
       {children}
     </CartContext.Provider>

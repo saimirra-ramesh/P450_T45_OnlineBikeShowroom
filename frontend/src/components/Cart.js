@@ -26,16 +26,6 @@ const Cart = () => {
     fetchItems();
   }, [setCartItems]);
 
-  // const handleRemoveFromCart = async (itemId) => {
-  //   try {
-  //     console.log('Cart.js, itemId, delete: ', itemId);
-  //     await removeFromCart(itemId);
-  //     setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
-  //   } catch (error) {
-  //     console.error('Error removing item from cart:', error);
-  //   }
-  // };
-
   const handleRemoveFromCart = async (itemData) => {
     try {
       console.log('Cart.js, itemData, delete: ', itemData);
@@ -44,10 +34,10 @@ const Cart = () => {
 
       toast.success('Item removed successfully');
 
-    // Reload the page after a short delay (adjust as needed)
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+      //Reload page after removal
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
 
     } catch (error) {
       console.error('Error removing item from cart:', error);
@@ -58,7 +48,7 @@ const Cart = () => {
     return (
       <div>
         <Nav />
-        <h4 style={{padding: "25px"}}>Please log in to access the cart.</h4>
+        <h4 style={{ padding: "25px" }}>Please log in to access the cart.</h4>
       </div>
     );
   }

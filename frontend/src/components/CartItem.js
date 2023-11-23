@@ -9,7 +9,7 @@ const CartItem = ({ item, removeFromCart }) => {
 
   const getUserIdFromToken = (token) => {
     const decodedToken = jwtDecode(token);
-    return decodedToken.userId; // Assuming your token has a userId field
+    return decodedToken.userId;
   };
 
   useEffect(() => {
@@ -47,7 +47,6 @@ const CartItem = ({ item, removeFromCart }) => {
               </td>
               <td>{item.quantity}</td>
               <td>
-                {/* <button onClick={() => removeFromCart(item._id)}>Remove</button> */}
                 <button onClick={() => removeFromCart(item)}>Remove</button>
               </td>
             </tr>

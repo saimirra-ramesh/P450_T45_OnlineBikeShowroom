@@ -56,7 +56,7 @@ const ProductView = () => {
       const updatedComparedProducts = [...comparedProducts, product];
       localStorage.setItem('comparedProducts', JSON.stringify(updatedComparedProducts));
 
-      // Use navigate instead of history.push
+      
     } else {
       toast.error('Maximum of 3 products allowed for comparison.');
     }
@@ -65,9 +65,6 @@ const ProductView = () => {
   return (
     <div>
       <Nav />
-
-      {/* <CartProvider authToken={authToken} /> */}
-
       <div className="product-view-container">
 
         <div className="product-top-section">

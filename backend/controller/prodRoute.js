@@ -27,14 +27,12 @@ prodRoute.get("/", async (req, res) => {
 prodRoute.get('/search', async (req, res) => {
   try {
     const { query } = req.query;
-    // console.log('Received search query:', query);
 
     const results = await Product.find({
       $text: { $search: query },
     });
 
     res.status(200).json(results);
-    // console.log("Search results: ", results);
   }
 
   catch (error) {
@@ -49,8 +47,6 @@ prodRoute.get('/search', async (req, res) => {
 prodRoute.get("/:productId", async (req, res) => {
   try {
     const productId = req.params.productId;
-    console.log('Received search id:', productId);
-
     if (!mongoose.Types.ObjectId.isValid(productId)) {
       return res.status(400).json({ error: "Invalid Product ID format" });
     }
@@ -62,8 +58,6 @@ prodRoute.get("/:productId", async (req, res) => {
     }
 
     res.status(200).json(product);
-    // console.log("Search results: ", product);
-
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).json({ error: "Internal Server Error" });

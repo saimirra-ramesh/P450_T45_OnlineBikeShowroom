@@ -6,16 +6,9 @@ const User = usersDbUrl.model("User", userSchema);
 const authenticateUser = async (req, res, next) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '');
-    console.log('Token in Middleware:', token);
-
     const decoded = jwt.verify(token, 'your-secret-key');
-    console.log('Decoded in Middleware:', decoded);
-
     const user = await User.findById(decoded.userId);
-    console.log('User in Middleware:', user);
-
-    // console.log('Token Expiry:', new Date(decoded.exp * 1000));
-
+    
     if (!user) {
       throw new Error();
     }

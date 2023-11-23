@@ -6,14 +6,14 @@ const bodyParser = require("body-parser");
 const PORT = 5555;
 
 const cartRoutes = require('./controller/cartRoutes.js');
-const prodRoute = require("./controller/prodRoute.js");//route to get all products or specific ones
+const prodRoute = require("./controller/prodRoute.js");
 const authRoutes = require('./controller/authRoutes.js');
 
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));//to get id from url 
+app.use(bodyParser.urlencoded({ extended: true })); //to get the id from url 
 app.use(cors());
 
 app.use("/products", prodRoute);
@@ -23,6 +23,7 @@ app.use("/cart", cartRoutes);
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });
+
 
 //Just to check if server is working, visit http://localhost:5555/
 app.get("/", (req, res) => {
