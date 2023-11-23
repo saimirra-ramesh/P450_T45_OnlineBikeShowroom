@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Nav from './Nav.js';
-import ProductView from './ProductView.js';
+import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+
+
 
 function SearchResultPage({ onSearch }) {
   const [searchResults, setSearchResults] = useState('');
@@ -45,18 +47,29 @@ function SearchResultPage({ onSearch }) {
   let content;
   if (searchResults && searchResults.length > 0) {
     content = (
-      <div id="search-results">
-        <h2 style={{ paddingTop: "15px" }}>Search Results</h2>
-        {searchResults.map((result) => (
-          <div key={result._id}>
-            <button id="search-results" onClick={() => handleViewProduct(result)}>
-              {result.name}
-            </button>
-            {selectedProduct === result && <ProductView product={result} />}
-          </div>
-        ))}
-        <hr />
-      </div>
+      <Container className="d-flex justify-content-center align-items-center">
+        <div style={{ marginBottom: '50px', marginTop: '20px'}}>
+          <h2 className='pt-4' style={{paddingBottom: '20px' }}>Search Results</h2>
+          <Row xs={1} md={2} lg={2} className="g-4">
+            {searchResults.map((result) => (
+              <Col key={result._id}>
+                <Card style={{ height: '100%', backgroundColor: 'black', color: 'white', border: '15px solid black' }}>
+                  <div onClick={() => handleViewProduct(result)} style={{ cursor: 'pointer' }}>
+                    <Card.Img variant="top" src={result.imageUrl} style={{ objectFit: 'cover', height: '60%', minHeight: '220px', maxHeight: '300px'}} />
+                    <Card.Body>
+                      <Card.Title>{result.name}</Card.Title>
+                      <Card.Text>Cost: {result.price} Lakhs</Card.Text>
+                      <Button variant="dark" style={{ backgroundColor: 'red', color: 'white' }}>
+                        View Product
+                      </Button>
+                    </Card.Body>
+                  </div>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </Container>
     );
   } else if (query.length > 0) {
     content = (
@@ -66,12 +79,11 @@ function SearchResultPage({ onSearch }) {
     );
   }
 
-  return (
-    <div>
-      <Nav />
-      <div>{content}</div>
-    </div>
-  );
+return (
+  <div>
+    <Nav />
+    <div>{content}</div>
+  </div>
+);
 }
-
 export default SearchResultPage;
