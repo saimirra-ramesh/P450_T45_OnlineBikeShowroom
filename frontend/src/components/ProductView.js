@@ -19,7 +19,9 @@ const ProductView = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`http://localhost:5555/products/${productId}`);
-        setProduct(response.data.product);
+        // setProduct(response.data.product);
+        setProduct(response.data);
+        console.log('ProductView.js: ', product);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -37,13 +39,16 @@ const ProductView = () => {
   }
 
   const handleAddToCart = () => {
+    if(!authToken){
+      toast.error('Please Login first!');
+    }else{
     addToCart({
       productId: productId,
       quantity: 1,
       product: product,
       authToken: authToken,
     });
-    toast.success('Product added to cart!');
+    toast.success('Product added to cart!');}
   };
 
   const handleCompare = () => {

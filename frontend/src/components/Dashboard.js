@@ -50,7 +50,8 @@ const Dashboard = () => {
 
     if (isConfirmed) {
       try {
-        await deleteProduct(productId, category);
+        // await deleteProduct(productId, category);
+        await deleteProduct(productId);
         // Refresh the product list after deletion
         const updatedProducts = await fetchProducts();
         setProducts(updatedProducts);

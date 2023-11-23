@@ -26,90 +26,103 @@ function SecondNav() {
 
     return (
         <nav className={`row ${navbarClasses}`} id="second-navbar">
-            
-                <div className="col-2 text-center">
-                    <div className="dropdown">
-                        <button
-                            className="btn dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                        >
-                            Bikes
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <Link className="dropdown-item" to="/item1">
-                                New Bikes
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Upcoming Bikes
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Accessories
-                            </Link>
-                        </div>
+
+            <div className="col-2 text-center">
+                <div className="dropdown">
+                    <button
+                        className="btn dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        Bikes
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <Link className="dropdown-item" to="/products/collection/bikes"onClick={() => {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 500);
+                        }}>
+                            View Bikes
+                        </Link>
+                        <Link className="dropdown-item" to="/products/collection/bikeAccessories"onClick={() => {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 500);
+                        }}>
+                            Accessories
+                        </Link>
                     </div>
                 </div>
+            </div>
 
-                <div className="col-2 text-center">
-                    <div className="dropdown">
-                        <button
-                            className="btn dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                        >
-                            Super Bikes
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <Link className="dropdown-item" to="/item1">
-                                New Super Bikes
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Upcoming Super Bikes
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Accessories
-                            </Link>
-                        </div>
+            <div className="col-2 text-center">
+                <div className="dropdown">
+                    <button
+                        className="btn dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        Super Bikes
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <Link className="dropdown-item" to="/products/collection/superbikes" 
+                            onClick={() => {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 500);
+                        }}>
+                            View Super Bikes
+                        </Link>
+                        <Link className="dropdown-item" to="/products/collection/superbikeAccessories"onClick={() => {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 500);
+                        }}>
+                            Accessories
+                        </Link>
                     </div>
                 </div>
+            </div>
 
 
-                <div className="col-2 text-center">
-                    <div className="dropdown">
-                        <button
-                            className="btn dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                        >
-                            Scooters
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <Link className="dropdown-item" to="/item1">
-                                New Scooters
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Upcoming Scooters
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Electric Scooters
-                            </Link>
-                            <Link className="dropdown-item" to="/item2">
-                                Accessories
-                            </Link>
-                        </div>
+            <div className="col-2 text-center">
+                <div className="dropdown">
+                    <button
+                        className="btn dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        Scooters
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <Link className="dropdown-item" to="/products/collection/scooters"onClick={() => {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 500);
+                        }}>
+                            View Scooters
+                        </Link>
+                        <Link className="dropdown-item" to="/products/collection/scooterAccessories"onClick={() => {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 500);
+                        }}>
+                            Accessories
+                        </Link>
                     </div>
                 </div>
+            </div>
 
-                <div className="col-2 text-center">
+            {/* <div className="col-2 text-center">
                     <div className="dropdown">
                         <button
                             className="btn dropdown-toggle"
@@ -142,22 +155,22 @@ function SecondNav() {
                             Sell Bikes
                         </button>
                     </div>
-                </div>
+                </div> */}
 
 
-                <div className="col-2 text-center">
-                    <div>
-                        <button
-                            className="btn"
-                            type="button"
-                            id="MenuButton"
-                            onClick={() => { window.location.href = '#/compare'; }}
-                        >
-                            Compare
-                        </button>
-                    </div>
+            <div className="col-2 text-center">
+                <div>
+                    <button
+                        className="btn"
+                        type="button"
+                        id="MenuButton"
+                        onClick={() => { window.location.href = '#/compare'; }}
+                    >
+                        Compare
+                    </button>
                 </div>
-            
+            </div>
+
         </nav >
     );
 }

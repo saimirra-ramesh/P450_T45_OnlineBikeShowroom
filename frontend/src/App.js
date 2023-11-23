@@ -44,7 +44,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/tiles" element={<Producttilesview />} />
+            {/* <Route path="/tiles" element={<Producttilesview />} /> */}
+            <Route path="/products/collection/:category" element={<Producttilesview />} />
+
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<Dashboard />} />

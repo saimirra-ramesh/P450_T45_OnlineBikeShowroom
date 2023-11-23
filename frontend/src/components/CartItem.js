@@ -18,7 +18,9 @@ const CartItem = ({ item, removeFromCart, onTotalPriceChange }) => {
       try {
         if (authToken && item.userId === getUserIdFromToken(authToken)) {
           const product = await fetchProductById(item.productId);
+          console.log("CartItems.js: ", item.userId, product);
           setProductDetails(product);
+          console.log(productDetails);
         }
       } catch (error) {
         console.error('Error fetching product details:', error);

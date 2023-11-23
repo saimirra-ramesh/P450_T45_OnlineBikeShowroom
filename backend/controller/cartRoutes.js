@@ -11,14 +11,16 @@ const dbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluste
 const CartDb = dbUrl.useDb('Cart');
 const Cart = CartDb.model("Cart", cartItemSchema);
 
-const bikeDb = dbUrl.useDb('bike');
-const Product = mongoose.model("scooters", productSchema);
+// Uncomment this if u think it's not working right
+// const bikeDb = dbUrl.useDb('bike');
+// const Product = mongoose.model("scooters", productSchema);
 
 
 // Get all cart items
 cartRoute.get("/", async (req, res) => {
   try {
     const cartItems = await Cart.find();
+    console.log("cartRoutes.js, cartItems, fetch: ", cartItems)
     res.status(200).json(cartItems);
   } catch (error) {
     console.error("cartRoutes.js, Error fetching cart items:", error);
@@ -30,6 +32,7 @@ cartRoute.get("/", async (req, res) => {
 cartRoute.post("/add", authenticateUser, async (req, res) => {
   const { productId, quantity } = req.body;
   const userId = req.user._id; 
+  console.log("cartRoutes.js, productId, add: ", productId);
 
   try {
     const cartItem = new Cart({ productId, quantity, userId });
