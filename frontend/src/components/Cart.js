@@ -5,6 +5,7 @@ import { useCart } from './CartContext';
 import { fetchCartItems, removeFromCart } from './CartApi';
 import { useAuth } from './AuthContext.js';
 import { toast } from 'react-toastify';
+import { Button } from 'react-bootstrap';
 
 const Cart = () => {
 
@@ -61,15 +62,24 @@ const Cart = () => {
   }
 
   return (
-    <div>
+    <div paddingBottom="50px">
       <Nav />
-      <h2>Shopping Cart</h2>
+      <h2 className='pt-4' style={{paddingBottom: '5px', paddingTop: '20px' }}>Shopping Cart</h2>
+      <table>
+              <tr>
+                <th width='200px'>Name</th>
+                <th width='300px'>Image</th>
+                <th width='200px'>Quantity</th>
+                <th width='200px'>Price</th>
+                <th width='200px'>Actions</th>
+              </tr>
+      </table>
       {cartItems.map((item) => (
         <CartItem key={item._id} item={item} removeFromCart={handleRemoveFromCart} onTotalPriceChange={handleTotalPriceChange} />
       ))}
     <div>
-        <p>Total Price: ${totalPrice}</p>
-        <button onClick={handleBuyNow}>Buy Now</button>
+        <p className='pt-4' style={{ color: 'black', fontWeight: 'bold', fontSize: '25px'}}>Total Price: ${totalPrice}</p>
+        <Button onClick={handleBuyNow} variant="dark" style={{ marginBottom: '40px', backgroundColor: 'red', color: 'white' }}>Buy Now</Button>
       </div>
     </div>
   );

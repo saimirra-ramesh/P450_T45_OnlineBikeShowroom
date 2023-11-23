@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchProductById } from './Product.js';
 import { useAuth } from './AuthContext.js';
 import { jwtDecode } from 'jwt-decode';
+import { Button } from 'react-bootstrap';
 
 const CartItem = ({ item, removeFromCart, onTotalPriceChange }) => {
   const { authToken } = useAuth();
@@ -40,24 +41,25 @@ const CartItem = ({ item, removeFromCart, onTotalPriceChange }) => {
         <div>
           <table>
             <thead>
-              <tr>
+              {/* <tr>
                 <th>Name</th>
                 <th>Image</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Actions</th>
-              </tr>
+              </tr> */}
             </thead>
             <tbody>
               <tr>
-                <td>{productDetails.name}</td>
-                <td>
-                  <img src={productDetails.imageUrl} alt="Product Image" style={{ height: '75px' }} />
+                <td width='200px'>{productDetails.name}</td>
+                <td width='300px'>
+                  <img src={productDetails.imageUrl} alt="Product Image" style={{ height: '100px' }} />
                 </td>
-                <td>{item.quantity}</td>
-                <td>{productDetails.price}</td>
-                <td>
-                  <button onClick={() => removeFromCart(item)}>Remove</button>
+                <td width='200px'>{item.quantity}</td>
+                <td width='200px'>{productDetails.price}</td>
+                <td width='200px'>
+                  {/* <button onClick={() => removeFromCart(item)}>Remove</button> */}
+                  <Button variant = 'dark' size='md' onClick={() => removeFromCart(item)} style={{ backgroundColor: 'red', color: 'white' }}>Remove</Button>
                 </td>
               </tr>
             </tbody>
