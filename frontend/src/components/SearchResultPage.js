@@ -1,14 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Nav from './Nav.js';
-<<<<<<< HEAD
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
-
-
-=======
 import ProductView from './ProductView.js';
 import { Card, Col, Container, Row, Button } from 'react-bootstrap';
->>>>>>> admin
 
 function SearchResultPage({ onSearch }) {
   const [searchResults, setSearchResults] = useState('');
@@ -28,11 +22,8 @@ function SearchResultPage({ onSearch }) {
 
       setSearchResults(data);
       setQuery(query);
-<<<<<<< HEAD
-=======
       console.log('SearchResultPage.js, Search data:', data);
       console.log('SearchResultPage.js, Query Received: ', query);
->>>>>>> admin
     } catch (error) {
       console.error("SearchResultPage.js, Error fetching data:", error);
     }
@@ -54,7 +45,6 @@ function SearchResultPage({ onSearch }) {
   let content;
   if (searchResults && searchResults.length > 0) {
     content = (
-<<<<<<< HEAD
       <Container className="d-flex justify-content-center align-items-center">
         <div style={{ marginBottom: '50px', marginTop: '20px'}}>
           <h2 className='pt-4' style={{paddingBottom: '20px' }}>Search Results</h2>
@@ -72,48 +62,12 @@ function SearchResultPage({ onSearch }) {
                       </Button>
                     </Card.Body>
                   </div>
-=======
-      <div id="search-results">
-        <h2 style={{ paddingTop: "15px" }}>Search Results</h2>
-        <Container>
-          <Row xs={1} md={2} lg={4} className="g-4">
-            {searchResults.map((result) => (
-              <Col key={result._id} xs={12} md={6} lg={3}>
-                <Card
-                  style={{
-                    height: '100%',
-                    backgroundColor: 'black',
-                    color: 'white',
-                    border: '15px solid black',
-                    marginBottom: '20px', // Added margin to separate cards
-                  }}
-                  onClick={() => handleViewProduct(result)}
-                >
-                  <Card.Img
-                    variant="top"
-                    src={result.imageUrl}
-                    style={{ objectFit: 'cover', height: '60%', minHeight: '150px' }}
-                  />
-                  <Card.Body>
-                    <Card.Title>{result.name}</Card.Title>
-                    <Button variant="dark" style={{ backgroundColor: 'red', color: 'white' }} onClick={() => handleViewProduct(result)}>
-                      View Product
-                    </Button>
-                    {/* Add more details if needed */}
-                  </Card.Body>
->>>>>>> admin
                 </Card>
               </Col>
             ))}
           </Row>
-<<<<<<< HEAD
         </div>
       </Container>
-=======
-        </Container>
-        <hr />
-      </div>
->>>>>>> admin
     );
   } else if (query.length > 0) {
     content = (
