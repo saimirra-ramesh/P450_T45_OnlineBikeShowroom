@@ -118,8 +118,8 @@ prodRoute.get('/search', async (req, res) => {
     const { query } = req.query;
 
     // Fetch all collections dynamically
-    const db = productDbUrl.connection.client.db;
-    const collections = await db.listCollections().toArray();
+    //const db = productDbUrl.connection.client.db;
+    const collections = await productDbUrl.db.listCollections().toArray();
     const collectionNames = collections.map(collection => collection.name);
 
     // Use getModel to dynamically search in each collection
