@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Nav from './Nav.js';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
@@ -23,7 +23,7 @@ function SearchResultPage({ onSearch }) {
 
       setSearchResults(data);
       setQuery(query);
-      console.log('SearchResultPage.js, Search data:', data); // Using the 'data' variable directly
+      console.log('SearchResultPage.js, Search data:', data);
       console.log('SearchResultPage.js, Query Received: ', query);
     } catch (error) {
       console.error("SearchResultPage.js, Error fetching data:", error);
