@@ -47,7 +47,7 @@ function SecondNav() {
                         }}>
                             View Bikes
                         </Link>
-                        <Link className="dropdown-item" to="/products/collection/bikeAccessories"onClick={() => {
+                        <Link className="dropdown-item" to="/products/collection/bikeaccessories"onClick={() => {
                             setTimeout(() => {
                                 window.location.reload();
                             }, 500);
@@ -79,7 +79,7 @@ function SecondNav() {
                         }}>
                             View Super Bikes
                         </Link>
-                        <Link className="dropdown-item" to="/products/collection/bikeAccessories"onClick={() => {
+                        <Link className="dropdown-item" to="/products/collection/bikeaccessories"onClick={() => {
                             setTimeout(() => {
                                 window.location.reload();
                             }, 500);
@@ -111,7 +111,7 @@ function SecondNav() {
                         }}>
                             View Scooters
                         </Link>
-                        <Link className="dropdown-item" to="/products/collection/bikeAccessories"onClick={() => {
+                        <Link className="dropdown-item" to="/products/collection/bikeaccessories"onClick={() => {
                             setTimeout(() => {
                                 window.location.reload();
                             }, 500);

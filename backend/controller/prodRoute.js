@@ -261,6 +261,7 @@ prodRoute.get("/collection/:collection", async (req, res) => {
       return;
     }
 
+    console.log('model: ', model);
     const products = await model.find();
     console.log(`Fetched ${collectionName} products:`, products);
 
