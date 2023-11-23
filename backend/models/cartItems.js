@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const productSchema = require('./productSchema');
 const userSchema = require('./userSchema');
+const productSchema = require('./productSchema');
 
-const Product = mongoose.model('Product', productSchema);
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("Users", userSchema);
+const Product = mongoose.model("scooters", productSchema);
 
 const cartItemSchema = new mongoose.Schema({
     productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
@@ -12,6 +12,5 @@ const cartItemSchema = new mongoose.Schema({
 }, {
     collection: "Cart"
 });
-
 
 module.exports = cartItemSchema;

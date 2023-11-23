@@ -15,9 +15,8 @@ const productSchema = new mongoose.Schema({
   enginetype:{type: String},
   displacement:{type: Number},
   seater:{type: String},
-},{
-  collection:"bike"
-});
+}
+);
 
 productSchema.index({name: 'text',  brand: 'text', description: 'text'});
 

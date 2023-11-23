@@ -22,9 +22,13 @@ export const addToCart = async (itemData) => {
   }
 };
 
-export const removeFromCart = async (itemId) => {
+export const removeFromCart = async (itemData) => {
   try {
-    await axios.delete(`${API_URL}/cart/remove/${itemId}`);
+    const productId = itemData.productId;
+    const userId = itemData.userId;
+
+    await axios.delete(`${API_URL}/cart/${userId}/${productId}`);
+
   } catch (error) {
     console.error('Error removing item from cart:', error);
     throw error;

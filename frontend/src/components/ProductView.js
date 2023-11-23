@@ -7,12 +7,13 @@ import Nav from './Nav.js';
 import { useCart } from './CartContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from './AuthContext.js';
 
 const ProductView = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const { addToCart } = useCart();
-
+  const { authToken } = useAuth();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -36,8 +37,8 @@ const ProductView = () => {
       productId: productId,
       quantity: 1,
       product: product,
+      authToken: authToken,
     });
-    console.log('Product added to cart:', product);
     toast.success('Product added to cart!');
   };
 
@@ -52,7 +53,8 @@ const ProductView = () => {
     if (comparedProducts.length < 3) {
       const updatedComparedProducts = [...comparedProducts, product];
       localStorage.setItem('comparedProducts', JSON.stringify(updatedComparedProducts));
-      toast.success(`${product.name} added for comparison!`);
+
+
     } else {
       toast.error('Maximum of 3 products allowed for comparison.');
     }
@@ -61,7 +63,6 @@ const ProductView = () => {
   return (
     <div>
       <Nav />
-
       <div className="product-view-container">
 
         <div className="product-top-section">
@@ -91,11 +92,11 @@ const ProductView = () => {
             </div>
 
             <div className="action-buttons">
-                         
-                <button className="add-to-cart-btn" onClick={handleAddToCart}>
-                  Add to Cart
-                </button>
-              
+
+              <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                Add to Cart
+              </button>
+
               <button className="compare-btn" onClick={handleCompare}>Compare</button>
             </div>
 
