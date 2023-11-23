@@ -430,6 +430,8 @@ prodRoute.put("/:productId/update", async (req, res) => {
   try {
     const updatedProduct = await updateProductById(productId, req.body);
 
+    console.log('Updated Product: ', updatedProduct);
+
     if (!updatedProduct) {
       return res.status(404).json({ error: "Product not found" });
     }

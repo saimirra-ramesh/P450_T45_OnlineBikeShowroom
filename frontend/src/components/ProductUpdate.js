@@ -15,7 +15,7 @@ const ProductUpdate = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`http://localhost:5555/products/${productId}`);
-        setProduct(response.data.product);
+        setProduct(response.data);
       } catch (error) {
         console.error('Error fetching product:', error);
         toast.error('Error fetching product');

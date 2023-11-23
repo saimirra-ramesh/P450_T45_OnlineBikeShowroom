@@ -71,12 +71,12 @@ const Dashboard = () => {
       {/* NEW */}
       <div>
         <Link to="/add-bike" className="button add-product-button">Add Product</Link>
-        <label>Select Category: </label>
+        <label style={{paddingRight: "5px"}}>Select Category: </label>
         <select onChange={(e) => handleCategoryChange(e.target.value)} value={selectedCategory}>
           <option value="bike">Bike</option>
           <option value="scooters">Scooters</option>
           <option value="superbikes">Superbikes</option>
-          <option value="usedbikes">Usedbikes</option>
+          {/* <option value="usedbikes">Usedbikes</option> */}
         </select>
 
         <p></p>

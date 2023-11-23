@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faMotorcycle, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faMotorcycle, faShoppingCart, faLock } from "@fortawesome/free-solid-svg-icons";
 import Secondnav from "./Secondnav.js";
 import SearchBar from "./SearchBar.js";
 import { useAuth } from './AuthContext.js';
@@ -35,9 +35,15 @@ function Nav() {
           <SearchBar onSearch={handleSearch} />
         </div>
 
-        <div className="col-lg-2 col-md-2 col-sm-12 text-center">
+        <div className="col-lg-1 col-md-2 col-sm-12 text-center">
           <Link className="nav-link" to="/cart" id="cart">
             <h5> Cart <FontAwesomeIcon icon={faShoppingCart} /></h5>
+          </Link>
+        </div>
+
+        <div className="col-lg-1 col-md-2 col-sm-12 text-center">
+          <Link className="nav-link" to="/admin" id="login">
+            <h5> Admin <FontAwesomeIcon icon={faUser} /></h5>
           </Link>
         </div>
 
@@ -46,7 +52,7 @@ function Nav() {
 
             <div className="col-lg-2 col-md-2 col-sm-12 text-center">
               <button className="nav-link" onClick={handleLogout} id="logout">
-                <h5> Logout <FontAwesomeIcon icon={faUser} /></h5>
+                <h5> Logout <FontAwesomeIcon icon={faLock} /></h5>
               </button>
             </div>
           </>
@@ -57,7 +63,6 @@ function Nav() {
             </Link>
           </div>
         )}
-
 
 
       </div>
