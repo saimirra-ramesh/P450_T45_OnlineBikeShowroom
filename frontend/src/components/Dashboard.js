@@ -1,32 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchProducts, deleteProduct } from '../components/Product';
+import { fetchProducts, deleteProduct, fetchProductsByCategory } from '../components/Product';
 import Nav from './Nav.js';
 import { toast } from 'react-toastify';
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
+  // NEW
+  const [selectedCategory, setSelectedCategory] = useState('bike');
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const productsData = await fetchProducts();
-        setProducts(productsData);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
     fetchData();
-  }, []);
+  }, [selectedCategory]);
 
-  const handleDelete = async (productId) => {
+  const fetchData = async () => {
+    try {
+      const productsData = await fetchProductsByCategory(selectedCategory);
+      setProducts(productsData);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
+
+  // NEW
+  
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const productsData = await fetchProducts();
+  //       setProducts(productsData);
+  //     } catch (error) {
+  //       console.error('Error fetching products:', error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  // NEW
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  // NEW
+
+  const handleDelete = async (productId, category) => {
 
     const isConfirmed = window.confirm('Are you sure you want to delete this product?');
 
     if (isConfirmed) {
       try {
-        await deleteProduct(productId);
+        await deleteProduct(productId, category);
         // Refresh the product list after deletion
         const updatedProducts = await fetchProducts();
         setProducts(updatedProducts);
@@ -43,8 +67,25 @@ const Dashboard = () => {
     <div style={{ backgroundColor: 'white', color: 'black'}}>
       <Nav />
       
-      <Link to="/add-bike" className="button add-product-button" >Add Product</Link>
-      {/* <h2>Product List </h2> */}
+      {/* NEW */}
+      <div>
+        <Link to="/add-bike" className="button add-product-button">Add Product</Link>
+        <label>Select Category: </label>
+        <select onChange={(e) => handleCategoryChange(e.target.value)} value={selectedCategory}>
+          <option value="bike">Bike</option>
+          <option value="scooters">Scooters</option>
+          <option value="superbikes">Superbikes</option>
+          <option value="usedbikes">Usedbikes</option>
+        </select>
+
+        <p></p>
+        <h2>{selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Collection</h2>
+
+      </div>
+      {/* NEW */}
+
+      {/* <Link to="/add-bike" className="button add-product-button" >Add Product</Link> */}
+      
       <p></p>
       <table >
         <thead>
@@ -70,7 +111,7 @@ const Dashboard = () => {
               <td>
                 <Link to={`/products/${product._id}`} className="button view-button">View</Link>{' '}
                 <Link to={`/products/${product._id}/update`} className="button update-button">Update</Link>{' '}
-                <button onClick={() => handleDelete(product._id)} className="button delete-button">Delete</button>
+                <button onClick={() => handleDelete(product._id,product.category)} className="button delete-button">Delete</button>
               </td>
             </tr>
           ))}

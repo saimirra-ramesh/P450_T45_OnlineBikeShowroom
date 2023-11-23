@@ -36,7 +36,10 @@ const AddBike = () => {
 
     try {
       // Make an API call to add a new bike using the formData
-      const response = await axios.post('http://localhost:5555/products/add-bike', formData);
+      // NEW
+      const response = await axios.post(`http://localhost:5555/products/add-${formData.category.toLowerCase()}`, formData);
+      // const response = await axios.post('http://localhost:5555/products/add-bike', formData);
+      // NEW
       setStatus('Product added successfully');
       toast.success('Product added successfully!');
       // Redirect to the dashboard after successful submission
@@ -53,7 +56,24 @@ const AddBike = () => {
       <h2>Add Bike</h2>
       
       <form className="add-bike-form" onSubmit={handleSubmit}>
-  <div className="form-group">
+        {/* NEW */}
+
+        <div className="form-group">
+        <label>Category: </label>
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Category</option>
+          <option value="bike">Bike</option>
+          <option value="scooters">Scooters</option>
+          <option value="superbikes">Superbikes</option>
+          <option value="usedbikes">Used Bikes</option>
+        </select>
+      </div>
+
+  {/* <div className="form-group">
     <label>Category: </label>
     <input
       type="text"
@@ -61,7 +81,8 @@ const AddBike = () => {
       value={formData.category}
       onChange={handleInputChange}
     />
-  </div>
+  </div> */}
+  {/* NEW */}
   <div className="form-group">
     <label>Brand: </label>
     <input

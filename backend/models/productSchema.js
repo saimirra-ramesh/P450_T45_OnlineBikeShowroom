@@ -15,6 +15,11 @@ const productSchema = new mongoose.Schema({
   enginetype:{type: String},
   displacement:{type: Number},
   seater:{type: String},
+},
+// {
+//   collection:"bike"
+// }
+);
 }
 );
 

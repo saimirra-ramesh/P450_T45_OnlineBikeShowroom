@@ -13,6 +13,16 @@ export const fetchProducts = async () => {
   }
 };
 
+export const fetchProductsByCategory = async (category) => {
+  try {
+    const response = await axios.get(`${API_URL}/products/category/${category}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
+  }
+};
+
 export const fetchProductById = async (productId) => {
   try {
     const response = await axios.get(`${API_URL}/products/${productId}`);
@@ -22,8 +32,8 @@ export const fetchProductById = async (productId) => {
     throw error;
   }
 };
-export const deleteProduct = async (productId) => {
-  await axios.delete(`${API_URL}/products/${productId}`);
+export const deleteProduct = async (productId, category) => {
+  await axios.delete(`${API_URL}/products/${productId}/?category=${category}`);
 };
 
 export const addProduct = async (productData) => {
@@ -34,4 +44,4 @@ export const addProduct = async (productData) => {
 export const updateProduct = async (productId, productData) => {
   const response = await axios.put(`${API_URL}/${productId}/update`, productData);
   return response.data;
-};
+};  
