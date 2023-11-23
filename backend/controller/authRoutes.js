@@ -5,13 +5,8 @@ const bcrypt = require('bcrypt');
 const userSchema = require("../models/userSchema");
 const usersDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/Users?retryWrites=true&w=majority");
 const User = usersDbUrl.model("User", userSchema);
-
-usersDbUrl.on('error', console.error.bind(console, 'MongoDB connection error:'));
-usersDbUrl.once('open', () => {
-  console.log('Connected to MongoDB Users DB');
-});
-
-
+const util = require('util');
+const nodemailer = require('nodemailer');
 // Signup route
 router.post('/signup', async (req, res) => {
     try {
@@ -56,6 +51,56 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         console.error('Error during login:', error);
         res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+});
+
+
+// Promisify the nodemailer.sendMail function
+
+
+// Route for Forgot Password
+router.post('/forgot-password', async (req, res) => {
+    try {
+        const { userName, email } = req.body;
+
+        // Check if the user exists
+        const user = await User.findOne({ userName, email });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        // Generate a unique token for password reset
+        const resetToken = jwt.sign({ userId: user._id }, 'your-reset-secret-key', { expiresIn: '1h' });
+
+        // Save the reset token to the user in the database
+        user.resetToken = resetToken;
+        await user.save();
+
+        // Send a password reset email to the user
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'sender@gmail.com',
+                pass: 'password',
+            },
+        });
+
+        const mailOptions = {
+            from: 'ieeedemo754@gmail.com',
+            to: user.email,
+            subject: 'Password Reset',
+            text: `Click the following link to reset your password: http://your-frontend-url/reset-password/${resetToken}`,
+        };
+
+        // Use the sendMail function of the transporter
+        await transporter.sendMail(mailOptions);
+
+        console.log('Email sent successfully');
+        return res.json({ success: true, message: 'Password reset email sent successfully' });
+    } catch (error) {
+        console.error('Error during password reset:', error);
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 });
 
