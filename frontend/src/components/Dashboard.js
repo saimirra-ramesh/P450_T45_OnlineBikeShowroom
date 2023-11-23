@@ -106,8 +106,8 @@ const Dashboard = () => {
               <td>{product.category}</td>
               <td>{product.brand}</td>
               <td>{product.name}</td>
-              <td>
-                <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '50px', maxHeight: '50px' }} />
+              <td width='150px' >
+                <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '200px', maxHeight: '200px', }} />
               </td>
               <td>{product.price}</td>
               <td>

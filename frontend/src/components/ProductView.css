@@ -1,5 +1,6 @@
 .product-view-container {
   display: flex;
+  width: 1600px;
   flex-direction: column; /* stack children vertically */
   margin-right: 1%;
   margin-left: 1%;
