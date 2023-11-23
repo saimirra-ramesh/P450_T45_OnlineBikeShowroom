@@ -21,8 +21,6 @@ function SearchResultPage({ onSearch }) {
 
       setSearchResults(data);
       setQuery(query);
-      console.log('SearchResultPage.js, Search data:', data); // Using the 'data' variable directly
-      console.log('SearchResultPage.js, Query Received: ', query);
     } catch (error) {
       console.error("SearchResultPage.js, Error fetching data:", error);
     }
@@ -38,7 +36,6 @@ function SearchResultPage({ onSearch }) {
 
   const handleViewProduct = (product) => {
     setSelectedProduct(product);
-    // Navigate to the selected product using the product ID in the URL
     navigate(`/products/${product._id}`);
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CartItem from './CartItem';
 import Nav from './Nav.js';
 import { useCart } from './CartContext';
@@ -10,6 +10,7 @@ const Cart = () => {
 
   const { cartItems, setCartItems } = useCart();
   const { isLoggedIn } = useAuth();
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
 
@@ -17,7 +18,6 @@ const Cart = () => {
       try {
         const items = await fetchCartItems();
         setCartItems(items);
-        console.log('Cart.js, itemId, fetch: ', items);
       } catch (error) {
         console.error('Error fetching cart items:', error);
       }
@@ -28,7 +28,6 @@ const Cart = () => {
 
   const handleRemoveFromCart = async (itemData) => {
     try {
-      console.log('Cart.js, itemData, delete: ', itemData);
       await removeFromCart(itemData);
       setCartItems((prevItems) => prevItems.filter((item) => item._id !== itemData.productId));
 
@@ -42,6 +41,14 @@ const Cart = () => {
     } catch (error) {
       console.error('Error removing item from cart:', error);
     }
+  };
+
+  const handleBuyNow = () => {
+    window.location.href = '/#/payment';
+  };
+
+  const handleTotalPriceChange = (newTotalPrice) => {
+    setTotalPrice((prevTotalPrice) => prevTotalPrice + newTotalPrice);
   };
 
   if (!isLoggedIn) {
@@ -58,8 +65,12 @@ const Cart = () => {
       <Nav />
       <h2>Shopping Cart</h2>
       {cartItems.map((item) => (
-        <CartItem key={item._id} item={item} removeFromCart={handleRemoveFromCart} />
+        <CartItem key={item._id} item={item} removeFromCart={handleRemoveFromCart} onTotalPriceChange={handleTotalPriceChange} />
       ))}
+    <div>
+        <p>Total Price: ${totalPrice}</p>
+        <button onClick={handleBuyNow}>Buy Now</button>
+      </div>
     </div>
   );
 };

@@ -9,15 +9,12 @@ import { useAuth } from './AuthContext.js';
 function Nav() {
 
   const { isLoggedIn, setIsLoggedIn } = useAuth();
-  // console.log("Logged in?: ", isLoggedIn);
 
   const handleSearch = (query) => {
     console.log('Nav.js, Searching for:', query);
   };
 
   const handleLogout = () => {
-
-    // Perform logout logic here
     setIsLoggedIn(false);
   };
 

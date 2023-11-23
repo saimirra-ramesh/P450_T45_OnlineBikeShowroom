@@ -39,8 +39,6 @@ const ProductView = () => {
       product: product,
       authToken: authToken,
     });
-    console.log('Token sent to CartContext: ', authToken);
-    console.log('Product added to cart:', product);
     toast.success('Product added to cart!');
   };
 
@@ -56,7 +54,7 @@ const ProductView = () => {
       const updatedComparedProducts = [...comparedProducts, product];
       localStorage.setItem('comparedProducts', JSON.stringify(updatedComparedProducts));
 
-      
+
     } else {
       toast.error('Maximum of 3 products allowed for comparison.');
     }

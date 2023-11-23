@@ -21,7 +21,6 @@ export const CartProvider = ({ children }) => {
       });
 
       if (response.ok) {
-        // Update state to add item to the local cartItems
         setCartItems((prevItems) => [...prevItems, item]);
       } else {
         console.error('Error adding item to cart:', response.statusText);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap styles
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PaymentGateway = () => {
     const [paymentOption, setPaymentOption] = useState(null);

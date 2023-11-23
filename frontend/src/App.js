@@ -19,6 +19,7 @@ import { AuthProvider } from './components/AuthContext.js';
 import ComparePage from './components/ComparePage.js';
 import { ToastContainer } from 'react-toastify';
 import { CartProvider } from './components/CartContext';
+import PaymentGateway from './components/paymentgateway';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             <Route path="/compare" element={<ComparePage />} />
             <Route path="/search-results" element={<SearchResultPage />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/payment" element={<PaymentGateway/>} />
           </Routes>
           </CartProvider>
           <Footer />

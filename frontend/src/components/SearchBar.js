@@ -14,7 +14,6 @@ const SearchBar = ({ onSearch }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(query);
-    console.log("SearchBar.js, Query: ", query);
     navigate(`/search-results?query=${query}`);
   };
 
