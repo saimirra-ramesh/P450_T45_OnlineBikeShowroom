@@ -50,7 +50,8 @@ const Dashboard = () => {
 
     if (isConfirmed) {
       try {
-        await deleteProduct(productId, category);
+        // await deleteProduct(productId, category);
+        await deleteProduct(productId);
         // Refresh the product list after deletion
         const updatedProducts = await fetchProducts();
         setProducts(updatedProducts);
@@ -70,12 +71,13 @@ const Dashboard = () => {
       {/* NEW */}
       <div>
         <Link to="/add-bike" className="button add-product-button">Add Product</Link>
-        <label>Select Category: </label>
+        <label style={{paddingRight: "5px"}}>Select Category: </label>
         <select onChange={(e) => handleCategoryChange(e.target.value)} value={selectedCategory}>
           <option value="bike">Bike</option>
           <option value="scooters">Scooters</option>
           <option value="superbikes">Superbikes</option>
-          <option value="usedbikes">Usedbikes</option>
+          <option value="bikeaccessories">bikeaccessories</option>
+          
         </select>
 
         <p></p>
@@ -104,8 +106,8 @@ const Dashboard = () => {
               <td>{product.category}</td>
               <td>{product.brand}</td>
               <td>{product.name}</td>
-              <td>
-                <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '50px', maxHeight: '50px' }} />
+              <td width='150px' >
+                <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '200px', maxHeight: '200px', }} />
               </td>
               <td>{product.price}</td>
               <td>

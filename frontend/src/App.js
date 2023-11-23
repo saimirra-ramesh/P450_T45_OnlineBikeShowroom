@@ -44,10 +44,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/tiles" element={<Producttilesview />} />
+            {/* <Route path="/tiles" element={<Producttilesview />} /> */}
+            <Route path="/products/collection/:category" element={<Producttilesview />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/add-bike" element={<AddBike />} />
             <Route path="/products/:productId" element={<ProductView />} />
             <Route path="/products/:productId/update" element={<ProductUpdate />} />

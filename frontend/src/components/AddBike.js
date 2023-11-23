@@ -37,7 +37,8 @@ const AddBike = () => {
     try {
       // Make an API call to add a new bike using the formData
       // NEW
-      const response = await axios.post(`http://localhost:5555/products/add-${formData.category.toLowerCase()}`, formData);
+      // const response = await axios.post(`http://localhost:5555/products/add-${formData.category.toLowerCase()}`, formData);
+      const response = await axios.post(`http://localhost:5555/products/add-product/${formData.category.toLowerCase()}`, formData);
       // const response = await axios.post('http://localhost:5555/products/add-bike', formData);
       // NEW
       setStatus('Product added successfully');
@@ -69,7 +70,7 @@ const AddBike = () => {
           <option value="bike">Bike</option>
           <option value="scooters">Scooters</option>
           <option value="superbikes">Superbikes</option>
-          <option value="usedbikes">Used Bikes</option>
+          {/* <option value="usedbikes">Used Bikes</option> */}
         </select>
       </div>
 

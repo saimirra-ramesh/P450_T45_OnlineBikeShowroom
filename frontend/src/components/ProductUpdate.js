@@ -1,4 +1,3 @@
-// ProductUpdate.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
@@ -43,53 +42,23 @@ const ProductUpdate = () => {
   };
 
   const handleUpdate = async () => {
-    console.log('Update Fields Before Request:', updateFields);
-
     try {
-      await axios.put(`http://localhost:5555/products/${productId}/update`, updateFields);
+      const updateData = {
+        category: product.category,
+        ...updateFields, // Include other fields you want to update
+      };
+
+      await axios.put(`http://localhost:5555/products/${productId}/update`, updateData);
       console.log('Product Updated successfully');
       setStatus('Product updated successfully');
       toast.success('Product updated successfully!');
     } catch (error) {
       console.error('Error updating product:', error);
       setStatus('Error updating product');
+      toast.success('Error updating product');
     }
   };
 
-  // return (
-  //   <div>
-  //     <Nav />
-  //     <h2>Update Product</h2>
-  //     <form>
-  //       {Object.keys(product).map((field) => {
-  //         if (field !== '__v' && field !== '_id') {
-  //           return (
-  //             <div key={field} className="form-group">
-  //               <label>{field}: </label>
-  //               <input
-  //                 type="text"
-  //                 name={field}
-  //                 value={updateFields[field] || product[field]}
-  //                 onChange={handleInputChange}
-  //               />
-  //             </div>
-  //           );
-  //         }
-  //         return null;
-  //       })}
-
-  //       <button type="button" onClick={handleUpdate}>
-  //         Update
-  //       </button>
-  //     </form>
-  //     <p style={{ color: 'red' }}>{status}</p>
-  //     <p></p>
-  //     <Link to="/admin" style={{ color: 'black' }}>
-  //       Go Back to Dashboard
-  //     </Link>
-  //     <p></p>
-  //   </div>
-  // );
   return (
     <div>
       <Nav />
@@ -111,7 +80,7 @@ const ProductUpdate = () => {
           }
           return null;
         })}
-  
+
         <button type="button" onClick={handleUpdate}>
           Update
         </button>
@@ -124,7 +93,6 @@ const ProductUpdate = () => {
       <p></p>
     </div>
   );
-  
 };
 
 export default ProductUpdate;

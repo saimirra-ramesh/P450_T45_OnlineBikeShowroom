@@ -19,7 +19,9 @@ const ProductView = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`http://localhost:5555/products/${productId}`);
-        setProduct(response.data.product);
+        // setProduct(response.data.product);
+        setProduct(response.data);
+        console.log('ProductView.js: ', product);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -37,13 +39,16 @@ const ProductView = () => {
   }
 
   const handleAddToCart = () => {
+    if(!authToken){
+      toast.error('Please Login first!');
+    }else{
     addToCart({
       productId: productId,
       quantity: 1,
       product: product,
       authToken: authToken,
     });
-    toast.success('Product added to cart!');
+    toast.success('Product added to cart!');}
   };
 
   const handleCompare = () => {
@@ -108,36 +113,40 @@ const ProductView = () => {
           </div>
         </div>
         <div className="specs" style={{ color: "#000000", marginTop: '40px', marginBottom: '40px' }}>
-          <h3 style={{ color: 'black' }}>Specifications</h3>
-          <table>
-            <tbody>
-              <tr>
-                <td>Brake:</td>
-                <td>{product.brake}</td>
-              </tr>
-              <tr>
-                <td>Fuel Capacity:</td>
-                <td>{product.fuelcapacity}</td>
-              </tr>
-              <tr>
-                <td>Mileage:</td>
-                <td>{product.mileage}</td>
-              </tr>
-              <tr>
-                <td>Engine Type:</td>
-                <td>{product.enginetype}</td>
-              </tr>
-              <tr>
-                <td>Displacement:</td>
-                <td>{product.displacement}</td>
-              </tr>
-              <tr>
-                <td>Seater:</td>
-                <td>{product.seater}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  {product.brake !== 'NA' && (
+    <>
+      <h3 style={{ color: 'black' }}>Specifications</h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>Brake:</td>
+            <td>{product.brake}</td>
+          </tr>
+          <tr>
+            <td>Fuel Capacity:</td>
+            <td>{product.fuelcapacity}</td>
+          </tr>
+          <tr>
+            <td>Mileage:</td>
+            <td>{product.mileage}</td>
+          </tr>
+          <tr>
+            <td>Engine Type:</td>
+            <td>{product.enginetype}</td>
+          </tr>
+          <tr>
+            <td>Displacement:</td>
+            <td>{product.displacement}</td>
+          </tr>
+          <tr>
+            <td>Seater:</td>
+            <td>{product.seater}</td>
+          </tr>
+        </tbody>
+      </table>
+    </>
+  )}
+</div>
 
 
       </div>

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Nav from './Nav.js';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function ProductTilesView() {
   const [products, setProducts] = useState([]);
+  const { category } = useParams();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5555/products');
+        const response = await fetch(`http://localhost:5555/products/collection/${category}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
