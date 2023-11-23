@@ -18,7 +18,7 @@ const ProductView = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`http://localhost:5555/products/${productId}`);
-        setProduct(response.data);
+        setProduct(response.data.product);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -26,6 +26,10 @@ const ProductView = () => {
 
     fetchProduct();
   }, [productId]);
+
+  // NEW
+  console.log('Product:', product);
+  // NEW
 
   if (!product) {
     return <div>Product Undefined</div>;

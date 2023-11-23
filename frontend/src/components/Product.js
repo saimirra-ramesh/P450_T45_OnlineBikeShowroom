@@ -32,8 +32,8 @@ export const fetchProductById = async (productId) => {
     throw error;
   }
 };
-export const deleteProduct = async (productId) => {
-  await axios.delete(`${API_URL}/products/${productId}`);
+export const deleteProduct = async (productId, category) => {
+  await axios.delete(`${API_URL}/products/${productId}/?category=${category}`);
 };
 
 export const addProduct = async (productData) => {
@@ -44,4 +44,4 @@ export const addProduct = async (productData) => {
 export const updateProduct = async (productId, productData) => {
   const response = await axios.put(`${API_URL}/${productId}/update`, productData);
   return response.data;
-};
+};  

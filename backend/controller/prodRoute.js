@@ -83,56 +83,69 @@ prodRoute.get('/search', async (req, res) => {
 
 });
 
-
-// Search for a product using the search bar
-prodRoute.get('/search', async (req, res) => {
-  try {
-    const { query } = req.query;
-    // console.log('Received search query:', query);
-
-    const results = await Product.find({
-      $text: { $search: query },
-    });
-
-    res.status(200).json(results);
-    // console.log("Search results: ", results);
-  }
-
-  catch (error) {
-    console.error("Error fetching product:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-
-});
-
-
+//NEW
 // Get a specific product by ID
 prodRoute.get("/:productId", async (req, res) => {
   try {
     const productId = req.params.productId;
-    console.log('Received search id:', productId);
 
     if (!mongoose.Types.ObjectId.isValid(productId)) {
       return res.status(400).json({ error: "Invalid Product ID format" });
     }
 
-    const product = await Product.findById(productId);
+    // Try to find the product in each model
+    const models = [Bike, Scooter, Superbikes, UsedBikes];
+
+    let product = null;
+    let category = null;
+
+    for (const model of models) {
+      product = await model.findById(productId);
+      if (product) {
+        category = model.modelName.toLowerCase();
+        break;
+      }
+    }
 
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
 
-    res.status(200).json(product);
+    res.status(200).json({ category, product });
     console.log("Search results: ", product);
-
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// NEW
+// // Get a specific product by ID
+// prodRoute.get("/:productId", async (req, res) => {
+//   try {
+//     const productId = req.params.productId;
+//     console.log('Received search id:', productId);
 
+//     if (!mongoose.Types.ObjectId.isValid(productId)) {
+//       return res.status(400).json({ error: "Invalid Product ID format" });
+//     }
+
+//     const product = await Product.findById(productId);
+
+//     if (!product) {
+//       return res.status(404).json({ error: "Product not found" });
+//     }
+
+//     res.status(200).json(product);
+//     console.log("Search results: ", product);
+
+//   } catch (error) {
+//     console.error("Error fetching product:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+//NEW
+
+// NEW
 // Add a new bike
 prodRoute.post("/add-bike", async (req, res) => {
   const newProduct = new Bike(req.body);
@@ -206,7 +219,7 @@ prodRoute.put("/:productId/update", async (req, res) => {
 
   try {
     // Fetch the existing product
-    const existingProduct = await Product.findById(productId);
+    const existingProduct = await getProductById(productId, req.query.category);
 
     if (!existingProduct) {
       return res.status(404).json({ error: "Product not found" });
@@ -227,12 +240,80 @@ prodRoute.put("/:productId/update", async (req, res) => {
   }
 });
 
+// Helper function to get a product by ID and category
+async function getProductById(productId, category) {
+  try {
+    let model;
+
+    switch (category) {
+      case "bike":
+        model = Bike;
+        break;
+      case "scooters":
+        model = Scooter;
+        break;
+      case "superbikes":
+        model = Superbikes;
+        break;
+      case "usedbikes":
+        model = UsedBikes;
+        break;
+      default:
+        throw new Error("Invalid category");
+    }
+
+    return await model.findById(productId);
+  } catch (error) {
+    throw error;
+  }
+}
+
+
+// // Delete a product by ID
+// prodRoute.delete("/:productId", async (req, res) => {
+//   const productId = req.params.productId;
+
+//   try {
+//     const deletedProduct = await Product.findByIdAndDelete(productId);
+
+//     if (!deletedProduct) {
+//       return res.status(404).json({ error: "Product not found" });
+//     }
+
+//     res.status(200).json({ message: "Product deleted successfully" });
+//   } catch (error) {
+//     console.error("Error deleting product:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
 // Delete a product by ID
 prodRoute.delete("/:productId", async (req, res) => {
   const productId = req.params.productId;
 
   try {
-    const deletedProduct = await Product.findByIdAndDelete(productId);
+    // Determine the model based on the category
+    const category = req.query.category;
+    let model;
+
+    switch (category) {
+      case "bike":
+        model = Bike;
+        break;
+      case "scooters":
+        model = Scooter;
+        break;
+      case "superbikes":
+        model = Superbikes;
+        break;
+      case "usedbikes":
+        model = UsedBikes;
+        break;
+      default:
+        return res.status(400).json({ error: "Invalid category" });
+    }
+
+    const deletedProduct = await model.findByIdAndDelete(productId);
 
     if (!deletedProduct) {
       return res.status(404).json({ error: "Product not found" });
@@ -244,6 +325,7 @@ prodRoute.delete("/:productId", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 
 module.exports = prodRoute;

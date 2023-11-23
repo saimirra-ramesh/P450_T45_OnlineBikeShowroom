@@ -44,13 +44,13 @@ const Dashboard = () => {
 
   // NEW
 
-  const handleDelete = async (productId) => {
+  const handleDelete = async (productId, category) => {
 
     const isConfirmed = window.confirm('Are you sure you want to delete this product?');
 
     if (isConfirmed) {
       try {
-        await deleteProduct(productId);
+        await deleteProduct(productId, category);
         // Refresh the product list after deletion
         const updatedProducts = await fetchProducts();
         setProducts(updatedProducts);
@@ -111,7 +111,7 @@ const Dashboard = () => {
               <td>
                 <Link to={`/products/${product._id}`} className="button view-button">View</Link>{' '}
                 <Link to={`/products/${product._id}/update`} className="button update-button">Update</Link>{' '}
-                <button onClick={() => handleDelete(product._id)} className="button delete-button">Delete</button>
+                <button onClick={() => handleDelete(product._id,product.category)} className="button delete-button">Delete</button>
               </td>
             </tr>
           ))}
