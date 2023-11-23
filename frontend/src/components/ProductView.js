@@ -53,6 +53,7 @@ const ProductView = () => {
       toast.error('Product is already added for comparison.');
       return;
     }
+    toast.success(`${product.name} added for comparison!`);
 
     if (comparedProducts.length < 3) {
       const updatedComparedProducts = [...comparedProducts, product];
