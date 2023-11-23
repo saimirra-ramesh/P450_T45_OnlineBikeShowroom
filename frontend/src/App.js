@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Producttilesview from './components/producttilesview';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import ForgotPassword from './components/ForgotPassword.js';
 import Dashboard from './components/Dashboard';
 import AddBike from './components/AddBike';
 import ProductView from './components/ProductView';
@@ -54,6 +55,7 @@ function App() {
             <Route path="/search-results" element={<SearchResultPage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/payment" element={<PaymentGateway/>} />
+            <Route path="/forgot-password" element={<ForgotPassword/>} />
           </Routes>
           </CartProvider>
           <Footer />

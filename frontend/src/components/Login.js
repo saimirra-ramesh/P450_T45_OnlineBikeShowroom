@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faMotorcycle } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from './AuthContext'; 
 import './Signup.css';
-import { toast } from 'react-toastify';
+
 
 function Login() {
   const { login } = useAuth();
@@ -50,7 +50,6 @@ function Login() {
           setSuccessMessage(data.message);
           login(data.token);
           navigate('/');
-          toast.success('Login successful!');
         } else {
           setSuccessMessage('');
           setErrorMessage(data.message || 'An error occurred during login.');
@@ -59,7 +58,6 @@ function Login() {
       .catch((error) => {
         console.error('Error:', error);
         setErrorMessage('An error occurred during login.');
-        toast.error('An error occurred during login.');
       });
   };
 
@@ -116,7 +114,7 @@ function Login() {
               <span style={{ marginLeft: "2vh", }}>Remember me</span>
             </div>
             <div className="forget_div">
-              <Link to="/forgot-password">Forgot Password?</Link>
+              <Link  className="nav-link" to="/forgot-password" id='forgot-password'>Forgot Password?</Link>
             </div>
           </div>
           <br />
