@@ -113,36 +113,40 @@ const ProductView = () => {
           </div>
         </div>
         <div className="specs" style={{ color: "#000000", marginTop: '40px', marginBottom: '40px' }}>
-          <h3 style={{ color: 'black' }}>Specifications</h3>
-          <table>
-            <tbody>
-              <tr>
-                <td>Brake:</td>
-                <td>{product.brake}</td>
-              </tr>
-              <tr>
-                <td>Fuel Capacity:</td>
-                <td>{product.fuelcapacity}</td>
-              </tr>
-              <tr>
-                <td>Mileage:</td>
-                <td>{product.mileage}</td>
-              </tr>
-              <tr>
-                <td>Engine Type:</td>
-                <td>{product.enginetype}</td>
-              </tr>
-              <tr>
-                <td>Displacement:</td>
-                <td>{product.displacement}</td>
-              </tr>
-              <tr>
-                <td>Seater:</td>
-                <td>{product.seater}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  {product.brake !== 'NA' && (
+    <>
+      <h3 style={{ color: 'black' }}>Specifications</h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>Brake:</td>
+            <td>{product.brake}</td>
+          </tr>
+          <tr>
+            <td>Fuel Capacity:</td>
+            <td>{product.fuelcapacity}</td>
+          </tr>
+          <tr>
+            <td>Mileage:</td>
+            <td>{product.mileage}</td>
+          </tr>
+          <tr>
+            <td>Engine Type:</td>
+            <td>{product.enginetype}</td>
+          </tr>
+          <tr>
+            <td>Displacement:</td>
+            <td>{product.displacement}</td>
+          </tr>
+          <tr>
+            <td>Seater:</td>
+            <td>{product.seater}</td>
+          </tr>
+        </tbody>
+      </table>
+    </>
+  )}
+</div>
 
 
       </div>
