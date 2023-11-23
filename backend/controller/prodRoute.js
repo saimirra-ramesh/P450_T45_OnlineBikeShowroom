@@ -5,12 +5,10 @@ const bikeSchema = require("../models/productSchema");
 const bikeDbUrl = mongoose.createConnection("mongodb+srv://friedcheesee:abcde@cluster0.vqdpm1s.mongodb.net/bike?retryWrites=true&w=majority");
 const Product = bikeDbUrl.model("bike", bikeSchema);
 
-// NEW
 const Bike = bikeDbUrl.model("bike", bikeSchema);
 const Scooter = bikeDbUrl.model("scooters", bikeSchema);
 const Superbikes = bikeDbUrl.model("superbikes", bikeSchema);
 const UsedBikes = bikeDbUrl.model("usedbikes", bikeSchema);
-// NEW
 
 
 bikeDbUrl.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -29,7 +27,6 @@ prodRoute.get("/", async (req, res) => {
   }
 });
  
-// NEW
 // Fetch data for a specific category
 prodRoute.get("/category/:category", async (req, res) => {
   const category = req.params.category;
@@ -65,7 +62,6 @@ prodRoute.get("/category/:category", async (req, res) => {
   }
 
 });
-// NEW
 
 // Search for a product using the search bar
 prodRoute.get('/search', async (req, res) => {
@@ -78,6 +74,8 @@ prodRoute.get('/search', async (req, res) => {
     });
 
     res.status(200).json(results);
+
+    
   }
 
   catch (error) {
